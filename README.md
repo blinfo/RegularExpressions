@@ -589,8 +589,7 @@ Matches whitespace characters, like new line, carriage return, tab and space.
 
   * true	"
 "
-  * true	"
-"
+  * true	""
   * true	"	"
   * true	" "
 
@@ -626,8 +625,7 @@ Matches non whitespace characters, like letter, digit or other symbol.
 
   * false	"
 "
-  * false	"
-"
+  * false	""
   * false	"	"
   * false	" "
 
