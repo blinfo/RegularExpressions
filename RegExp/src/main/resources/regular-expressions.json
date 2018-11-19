@@ -10,7 +10,7 @@
         },
         {
             "title": "Single non digit",
-            "description": "Matches exactly one character which can not be a digit.",
+            "description": "Matches exactly one character which can not be a digit. The circumflex as the first character in the brackets means \"NOT\"",
             "regexp": "\\D",
             "alternativeRegexp": "[^0-9]",
             "matches": ["a", "P", "@"],
@@ -64,8 +64,16 @@
             "nonMatches": ["12", "345678", "text"]
         },
         {
+            "title": "Hexadecimal",
+            "description": "Matches one hexadecimal.",
+            "regexp": "[\\da-fA-F]",
+            "alternativeRegexp": "[0-9a-fA-F]",
+            "matches": ["1", "8", "A", "f"],
+            "nonMatches": ["", "11", "G", "h"]
+        },
+        {
             "title": "Negative or positive number",
-            "description": "Matches negative or positive number of one or more digits. To use minus sign in a group\nit you can put it as the first sign in the group or escape it.",
+            "description": "Matches negative or positive number of one or more digits. To use a minus (hyphen) in a group\nyou can put it as the first character in the group, the first character after a negating circumflex,\nthe last character before the closing bracket or escape it.",
             "regexp": "[+\\-]{0,1}\\d+",
             "alternativeRegexp": "[-+]{0,1}[0-9]{1,}",
             "matches": ["0", "-19", "4", "-534", "+24", "-0"],
@@ -74,14 +82,14 @@
         {
             "title": "Zero or negative or positive number",
             "description": "Matches number zero or a negative or positive non zero of one or more digits.",
-            "regexp": "0{1}|[-+]{0,1}[1-9]{1}\\d{0,}",
+            "regexp": "0|[-+]{0,1}[1-9]\\d{0,}",
             "matches": ["0", "-19", "4", "-534", "+24"],
             "nonMatches": ["-", "-0", "1+1", "-11.2", ""]
         },
         {
             "title": "Zero or negative or positive float",
             "description": "Matches number zero or a negative or positive float (non zero).",
-            "regexp": "0{1}|[-+]{0,1}\\d{1,}\\.\\d{1,9}",
+            "regexp": "0|[-+]{0,1}\\d{1,}\\.\\d{1,9}",
             "matches": ["0.1", "-19.0", "4.0154", "-0.534", "+0.24"],
             "nonMatches": ["-", "4", "-0", "1+1", "-11,2", "", "1.2.43"]
         },
@@ -115,18 +123,56 @@
             "nonMatches": ["A", "x", "y", "¥"]
         },
         {
+            "title": "Consonants",
+            "description": "Matches all consonants but no wovels",
+            "regexp": "[a-zA-Z&&[^aeiouyAEIOUY]]",
+            "alternativeRegexp": "[b-df-hj-np-tv-xzB-DF-HJ-NP-TV-XZ]",
+            "matches": ["b", "Q", "Z", "v", "L"],
+            "nonMatches": ["A", "e", "y", "O"]
+        },
+        {
+            "title": "Dot - Any character but new line",
+            "description": "Matches any character that is not a new line. The non matching characters in the\nexample below are \\r\\n, \\r, \\n",
+            "regexp": ".",
+            "matches": ["b", "Q", "?", "!", "@", "¡", "1", "8"],
+            "nonMatches": ["\r\n", "\r", "\n"]
+        },
+        {
             "title": "Single white space",
-            "description": "Matches whitespace characters, like new line, carriage return, tab and space.",
+            "description": "Matches whitespace characters, like new line, carriage return, tab and space. The matching characters in the\nexample below are \\r\\n, \\r, \\n, space and \\f",
             "regexp": "\\s",
-            "matches": ["\n", "\r", "\t", " "],
+            "matches": ["\n", "\r", "\t", " ", "\f"],
             "nonMatches": ["", "x"]
         },
         {
             "title": "Single non white space",
             "description": "Matches non whitespace characters, like letter, digit or other symbol.",
             "regexp": "\\S",
+            "alternativeRegexp": "[^\\s]",
             "matches": ["a", "x", "Ö", "+", "0", "&", "¥"],
-            "nonMatches": ["\n", "\r", "\t", " "]
+            "nonMatches": ["\n", "\r", "\t", " ", "\f"]
+        },
+        {
+            "title": "New line",
+            "description": "Matches new line both in windows and unix-like os (mac). Windows uses CRLF (\\r\\n) while other uses only LF (\\n)\nThe strings that matches below are \\n and \\r\\n, the non-matching strings are \\n\\r and \\t.",
+            "regexp": "\\R",
+            "alternativeRegexp": "\\r{0,1}\\n",
+            "matches": ["\n", "\r\n"],
+            "nonMatches": ["\n\r", "\t"]
+        },
+        {
+            "title": "Single white space or digit",
+            "description": "Matches whitespace characters, like new line, carriage return, tab and space and a digit.",
+            "regexp": "[\\s\\d]",
+            "matches": ["\n", "\r", "\t", " ", "1", "9"],
+            "nonMatches": ["", "x", "11", "A"]
+        },
+        {
+            "title": "Date - a fairly good match",
+            "description": "A fairly good matching of dates. It does not handel the number of days for each month and\nconsequently not leap years. Thus an invalid date like \"1997-02-31\" will still match. \nTo add another century, add a it to the start of the expression: \"(18|19|20)\\d{2}\", which would\nplace the failed date \"1874-11-15\" within the range for the expression and make it match.",
+            "regexp": "(19|20)\\d{2}[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])",
+            "matches": ["1920-12-31", "2037-11-19", "2000-01-01", "1968-08-19", "1997-02-31"],
+            "nonMatches": ["1874-11-15", "1989-13-01", "2084-11-00"]
         },
         {
             "title": "Swedish social security number - Initial attempt",
@@ -136,18 +182,20 @@
             "nonMatches": ["1234567-9781", "1920-12-11-5789", "647189-987", "87456321"]
         },
         {
-            "title": "Swedish social security number - Improved attempt",
-            "description": "A somewhat better matching of the Swedish social security number. six or eight digits, an optional\nhyphen and four digits.",
+            "title": "Swedish social security number - Improved",
+            "description": "A somewhat better matching of the Swedish social security number. six or eight digits, an optional\nhyphen and four digits. Note that the first four non-matching numbers matched the initial attempt.",
             "regexp": "(19\\d{2}|20[01]\\d|\\d{2})(0[1-9]|1[0-2])(0[1-9]|[1-2]\\d|3[0-1])-{0,1}\\d{4}",
             "matches": ["19721011-6534", "7811309574", "120226-0987", "19991231-9999"],
-            "nonMatches": ["1234567-9781", "1920-12-11-5789", "647189-987", "87456321", "20040832-1541"]
+            "nonMatches": ["254789-1234", "987741008475", "12345678-0987", "8745632104", "1234567-9781", "1920-12-11-5789", "647189-987", "87456321", "20040832-1541"]
         },
+        
         {
             "title": "Swedish car number",
-            "description": "Matches the Swedish licence plate number. Three upper case letters A-H, J-P, R-U or W-Z\nfollowed by 001 - 999 or 00 - 99 plus upper case letter A-H, J-P, R-U or W-Z.",
-            "regexp": "[A-HJ-PR-UW-Z]{3}\\s{0,1}(0\\d[1-9]|[1-9]\\d[A-HJ-PR-UW-Z0-9])",
-            "matches": ["ABC123", "PKJ 001", "DEF 456", "HJK 94A"],
-            "nonMatches": ["abc123", "CDE 000", "IIV 453", "DEF 4567", "QHI 987"]
+            "description": "Matches the Swedish licence plate number. Three upper case letters A-H, J-P, R-U or W-Z\nfollowed by 001 - 999 or 00 - 99 plus upper case letter A-H, J-P, R-U or W-Z.\nSome letter combinations are removed, like KKK, PKK and a few others, but this\nexpression does not handle these numbers.",
+            "regexp": "[A-HJ-PR-UW-Z]{3} {0,1}(0\\d[A-HJ-PR-UW-Z1-9]|[1-9]\\d[A-HJ-PR-UW-Z0-9])",
+            "alternativeRegexp": "[A-Z&&[^IQV]]{3} {0,1}(0\\d[A-Z1-9&&[^IQV]]|[1-9]\\d[A-Z0-9&&[^IQV]])",
+            "matches": ["ABC123", "PKJ 001", "DEF 456", "HJK 94A", "AAA 00W"],
+            "nonMatches": ["abc123", "CDE 000", "IIV 453", "DEF 4567", "QHI 987", "BCD 12I"]
         }
     ]
 }

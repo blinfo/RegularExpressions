@@ -9,6 +9,7 @@
   * <a href="#three-digits">Three digits</a>
   * <a href="#three-or-more-digits">Three or more digits</a>
   * <a href="#three-to-five-digits">Three to five digits</a>
+  * <a href="#hexadecimal">Hexadecimal</a>
   * <a href="#negative-or-positive-number">Negative or positive number</a>
   * <a href="#zero-or-negative-or-positive-number">Zero or negative or positive number</a>
   * <a href="#zero-or-negative-or-positive-float">Zero or negative or positive float</a>
@@ -16,10 +17,15 @@
   * <a href="#one-english-letter-et-al">One English letter et al</a>
   * <a href="#one-swedish-letter">One Swedish letter</a>
   * <a href="#some-specific-letters">Some specific letters</a>
+  * <a href="#consonants">Consonants</a>
+  * <a href="#dot---any-character-but-new-line">Dot - Any character but new line</a>
   * <a href="#single-white-space">Single white space</a>
   * <a href="#single-non-white-space">Single non white space</a>
+  * <a href="#new-line">New line</a>
+  * <a href="#single-white-space-or-digit">Single white space or digit</a>
+  * <a href="#date---a-fairly-good-match">Date - a fairly good match</a>
   * <a href="#swedish-social-security-number---initial-attempt">Swedish social security number - Initial attempt</a>
-  * <a href="#swedish-social-security-number---improved-attempt">Swedish social security number - Improved attempt</a>
+  * <a href="#swedish-social-security-number---improved">Swedish social security number - Improved</a>
   * <a href="#swedish-car-number">Swedish car number</a>
 
 
@@ -70,7 +76,7 @@ With alternative writing:
 
 **Alternative**: `[^0-9]`
 
-Matches exactly one character which can not be a digit.
+Matches exactly one character which can not be a digit. The circumflex as the first character in the brackets means "NOT"
 
   _Matches:_
 
@@ -332,6 +338,50 @@ With alternative writing:
 
 ---
 
+<a name="hexadecimal"> </a>
+### Hexadecimal
+
+**Expression**: `[\\da-fA-F]`
+
+**Alternative**: `[0-9a-fA-F]`
+
+Matches one hexadecimal.
+
+  _Matches:_
+
+  * true	"1"
+  * true	"8"
+  * true	"A"
+  * true	"f"
+
+  _Non Matches:_
+
+  * false	""
+  * false	"11"
+  * false	"G"
+  * false	"h"
+
+With alternative writing:
+
+  _Matches:_
+
+  * true	"1"
+  * true	"8"
+  * true	"A"
+  * true	"f"
+
+  _Non Matches:_
+
+  * false	""
+  * false	"11"
+  * false	"G"
+  * false	"h"
+
+
+<a href="#top">^</a>
+
+---
+
 <a name="negative-or-positive-number"> </a>
 ### Negative or positive number
 
@@ -339,8 +389,9 @@ With alternative writing:
 
 **Alternative**: `[-+]{0,1}[0-9]{1,}`
 
-Matches negative or positive number of one or more digits. To use minus sign in a group  
-it you can put it as the first sign in the group or escape it.
+Matches negative or positive number of one or more digits. To use a minus (hyphen) in a group  
+you can put it as the first character in the group, the first character after a negating circumflex,  
+the last character before the closing bracket or escape it.
 
   _Matches:_
 
@@ -384,7 +435,7 @@ With alternative writing:
 <a name="zero-or-negative-or-positive-number"> </a>
 ### Zero or negative or positive number
 
-**Expression**: `0{1}|[-+]{0,1}[1-9]{1}\\d{0,}`
+**Expression**: `0|[-+]{0,1}[1-9]\\d{0,}`
 
 Matches number zero or a negative or positive non zero of one or more digits.
 
@@ -413,7 +464,7 @@ Matches number zero or a negative or positive non zero of one or more digits.
 <a name="zero-or-negative-or-positive-float"> </a>
 ### Zero or negative or positive float
 
-**Expression**: `0{1}|[-+]{0,1}\\d{1,}\\.\\d{1,9}`
+**Expression**: `0|[-+]{0,1}\\d{1,}\\.\\d{1,9}`
 
 Matches number zero or a negative or positive float (non zero).
 
@@ -578,12 +629,92 @@ symbols £, € and $.
 
 ---
 
+<a name="consonants"> </a>
+### Consonants
+
+**Expression**: `[a-zA-Z&&[^aeiouyAEIOUY]]`
+
+**Alternative**: `[b-df-hj-np-tv-xzB-DF-HJ-NP-TV-XZ]`
+
+Matches all consonants but no wovels
+
+  _Matches:_
+
+  * true	"b"
+  * true	"Q"
+  * true	"Z"
+  * true	"v"
+  * true	"L"
+
+  _Non Matches:_
+
+  * false	"A"
+  * false	"e"
+  * false	"y"
+  * false	"O"
+
+With alternative writing:
+
+  _Matches:_
+
+  * true	"b"
+  * true	"Q"
+  * true	"Z"
+  * true	"v"
+  * true	"L"
+
+  _Non Matches:_
+
+  * false	"A"
+  * false	"e"
+  * false	"y"
+  * false	"O"
+
+
+<a href="#top">^</a>
+
+---
+
+<a name="dot---any-character-but-new-line"> </a>
+### Dot - Any character but new line
+
+**Expression**: `.`
+
+Matches any character that is not a new line. The non matching characters in the  
+example below are \\r\\n, \\r, \\n
+
+  _Matches:_
+
+  * true	"b"
+  * true	"Q"
+  * true	"?"
+  * true	"!"
+  * true	"@"
+  * true	"¡"
+  * true	"1"
+  * true	"8"
+
+  _Non Matches:_
+
+  * false	"
+"
+  * false	""
+  * false	"
+"
+
+
+
+<a href="#top">^</a>
+
+---
+
 <a name="single-white-space"> </a>
 ### Single white space
 
 **Expression**: `\\s`
 
-Matches whitespace characters, like new line, carriage return, tab and space.
+Matches whitespace characters, like new line, carriage return, tab and space. The matching characters in the  
+example below are \\r\\n, \\r, \\n, space and \\f
 
   _Matches:_
 
@@ -592,6 +723,7 @@ Matches whitespace characters, like new line, carriage return, tab and space.
   * true	""
   * true	"	"
   * true	" "
+  * true	""
 
   _Non Matches:_
 
@@ -608,6 +740,8 @@ Matches whitespace characters, like new line, carriage return, tab and space.
 ### Single non white space
 
 **Expression**: `\\S`
+
+**Alternative**: `[^\\s]`
 
 Matches non whitespace characters, like letter, digit or other symbol.
 
@@ -628,6 +762,130 @@ Matches non whitespace characters, like letter, digit or other symbol.
   * false	""
   * false	"	"
   * false	" "
+  * false	""
+
+With alternative writing:
+
+  _Matches:_
+
+  * true	"a"
+  * true	"x"
+  * true	"Ö"
+  * true	"+"
+  * true	"0"
+  * true	"&"
+  * true	"¥"
+
+  _Non Matches:_
+
+  * false	"
+"
+  * false	""
+  * false	"	"
+  * false	" "
+  * false	""
+
+
+<a href="#top">^</a>
+
+---
+
+<a name="new-line"> </a>
+### New line
+
+**Expression**: `\\R`
+
+**Alternative**: `\\r{0,1}\\n`
+
+Matches new line both in windows and unix-like os (mac). Windows uses CRLF (\\r\\n) while other uses only LF (\\n)  
+The strings that matches below are \\n and \\r\\n, the non-matching strings are \\n\\r and \\t.
+
+  _Matches:_
+
+  * true	"
+"
+  * true	"
+"
+
+  _Non Matches:_
+
+  * false	"
+"
+  * false	"	"
+
+With alternative writing:
+
+  _Matches:_
+
+  * true	"
+"
+  * true	"
+"
+
+  _Non Matches:_
+
+  * false	"
+"
+  * false	"	"
+
+
+<a href="#top">^</a>
+
+---
+
+<a name="single-white-space-or-digit"> </a>
+### Single white space or digit
+
+**Expression**: `[\\s\\d]`
+
+Matches whitespace characters, like new line, carriage return, tab and space and a digit.
+
+  _Matches:_
+
+  * true	"
+"
+  * true	""
+  * true	"	"
+  * true	" "
+  * true	"1"
+  * true	"9"
+
+  _Non Matches:_
+
+  * false	""
+  * false	"x"
+  * false	"11"
+  * false	"A"
+
+
+
+<a href="#top">^</a>
+
+---
+
+<a name="date---a-fairly-good-match"> </a>
+### Date - a fairly good match
+
+**Expression**: `(19|20)\\d{2}[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])`
+
+A fairly good matching of dates. It does not handel the number of days for each month and  
+consequently not leap years. Thus an invalid date like "1997-02-31" will still match.   
+To add another century, add a it to the start of the expression: "(18|19|20)\\d{2}", which would  
+place the failed date "1874-11-15" within the range for the expression and make it match.
+
+  _Matches:_
+
+  * true	"1920-12-31"
+  * true	"2037-11-19"
+  * true	"2000-01-01"
+  * true	"1968-08-19"
+  * true	"1997-02-31"
+
+  _Non Matches:_
+
+  * false	"1874-11-15"
+  * false	"1989-13-01"
+  * false	"2084-11-00"
 
 
 
@@ -664,13 +922,13 @@ not wether they are correct.
 
 ---
 
-<a name="swedish-social-security-number---improved-attempt"> </a>
-### Swedish social security number - Improved attempt
+<a name="swedish-social-security-number---improved"> </a>
+### Swedish social security number - Improved
 
 **Expression**: `(19\\d{2}|20[01]\\d|\\d{2})(0[1-9]|1[0-2])(0[1-9]|[1-2]\\d|3[0-1])-{0,1}\\d{4}`
 
 A somewhat better matching of the Swedish social security number. six or eight digits, an optional  
-hyphen and four digits.
+hyphen and four digits. Note that the first four non-matching numbers matched the initial attempt.
 
   _Matches:_
 
@@ -681,6 +939,10 @@ hyphen and four digits.
 
   _Non Matches:_
 
+  * false	"254789-1234"
+  * false	"987741008475"
+  * false	"12345678-0987"
+  * false	"8745632104"
   * false	"1234567-9781"
   * false	"1920-12-11-5789"
   * false	"647189-987"
@@ -696,10 +958,14 @@ hyphen and four digits.
 <a name="swedish-car-number"> </a>
 ### Swedish car number
 
-**Expression**: `[A-HJ-PR-UW-Z]{3}\\s{0,1}(0\\d[1-9]|[1-9]\\d[A-HJ-PR-UW-Z0-9])`
+**Expression**: `[A-HJ-PR-UW-Z]{3} {0,1}(0\\d[A-HJ-PR-UW-Z1-9]|[1-9]\\d[A-HJ-PR-UW-Z0-9])`
+
+**Alternative**: `[A-Z&&[^IQV]]{3} {0,1}(0\\d[A-Z1-9&&[^IQV]]|[1-9]\\d[A-Z0-9&&[^IQV]])`
 
 Matches the Swedish licence plate number. Three upper case letters A-H, J-P, R-U or W-Z  
-followed by 001 - 999 or 00 - 99 plus upper case letter A-H, J-P, R-U or W-Z.
+followed by 001 - 999 or 00 - 99 plus upper case letter A-H, J-P, R-U or W-Z.  
+Some letter combinations are removed, like KKK, PKK and a few others, but this  
+expression does not handle these numbers.
 
   _Matches:_
 
@@ -707,6 +973,7 @@ followed by 001 - 999 or 00 - 99 plus upper case letter A-H, J-P, R-U or W-Z.
   * true	"PKJ 001"
   * true	"DEF 456"
   * true	"HJK 94A"
+  * true	"AAA 00W"
 
   _Non Matches:_
 
@@ -715,7 +982,26 @@ followed by 001 - 999 or 00 - 99 plus upper case letter A-H, J-P, R-U or W-Z.
   * false	"IIV 453"
   * false	"DEF 4567"
   * false	"QHI 987"
+  * false	"BCD 12I"
 
+With alternative writing:
+
+  _Matches:_
+
+  * true	"ABC123"
+  * true	"PKJ 001"
+  * true	"DEF 456"
+  * true	"HJK 94A"
+  * true	"AAA 00W"
+
+  _Non Matches:_
+
+  * false	"abc123"
+  * false	"CDE 000"
+  * false	"IIV 453"
+  * false	"DEF 4567"
+  * false	"QHI 987"
+  * false	"BCD 12I"
 
 
 <a href="#top">^</a>
