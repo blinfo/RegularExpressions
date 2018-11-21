@@ -5,23 +5,38 @@ import com.google.gson.GsonBuilder;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author hl
  */
-public class RegExpProvider {
+public class SourceProvider {
 
     private final Gson gson;
+    private final Map<String, RegExp> regExpMap = new HashMap<>();
 
-    public RegExpProvider() {
+    public SourceProvider() {
         this.gson = new GsonBuilder().create();
     }
 
     public List<RegExp> getExpressions() {
         Reader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/regular-expressions.json")));
         return gson.fromJson(reader, RegularExpressions.class).getRegularExpressions();
+    }
+
+    public String getExpression(String title) {
+        return getExpression(title, false);
+    }
+
+    public String getExpression(String title, boolean alternative) {
+        return getExpressions().stream()
+                .filter(r -> r.getTitle().equals(title))
+                .map(r -> alternative && r.getAlternativeRegexp() != null ? r.getAlternativeRegexp() : r.getRegexp())
+                .findFirst()
+                .orElseThrow(() -> new RegExpException("Not found: " + title, new NullPointerException()));
     }
 
     private class RegularExpressions {

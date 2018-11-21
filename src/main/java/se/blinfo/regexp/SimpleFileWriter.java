@@ -13,7 +13,7 @@ import java.nio.charset.Charset;
  *
  * @author hl
  */
-public class SimpleFileWriter {
+class SimpleFileWriter {
 
     private String content;
     private final File file;

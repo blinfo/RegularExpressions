@@ -10,10 +10,10 @@
   * <a href="#three-or-more-digits">Three or more digits</a>
   * <a href="#three-to-five-digits">Three to five digits</a>
   * <a href="#hexadecimal">Hexadecimal</a>
-  * <a href="#negative-or-positive-number">Negative or positive number</a>
-  * <a href="#zero-or-negative-or-positive-number">Zero or negative or positive number</a>
+  * <a href="#negative-or-positive-integer">Negative or positive integer</a>
+  * <a href="#zero-or-negative-or-positive-integer">Zero or negative or positive integer</a>
   * <a href="#zero-or-negative-or-positive-float">Zero or negative or positive float</a>
-  * <a href="#negative-or-positive-float-or-int">Negative or positive float or int</a>
+  * <a href="#negative-or-positive-float-or-integer">Negative or positive float or integer</a>
   * <a href="#one-english-letter-et-al">One English letter et al</a>
   * <a href="#one-swedish-letter">One Swedish letter</a>
   * <a href="#some-specific-letters">Some specific letters</a>
@@ -24,6 +24,7 @@
   * <a href="#new-line">New line</a>
   * <a href="#single-white-space-or-digit">Single white space or digit</a>
   * <a href="#date---a-fairly-good-match">Date - a fairly good match</a>
+  * <a href="#isodate">IsoDate</a>
   * <a href="#swedish-social-security-number---initial-attempt">Swedish social security number - Initial attempt</a>
   * <a href="#swedish-social-security-number---improved">Swedish social security number - Improved</a>
   * <a href="#swedish-car-number">Swedish car number</a>
@@ -382,14 +383,14 @@ With alternative writing:
 
 ---
 
-<a name="negative-or-positive-number"> </a>
-### Negative or positive number
+<a name="negative-or-positive-integer"> </a>
+### Negative or positive integer
 
 **Expression**: `[+\\-]{0,1}\\d+`
 
 **Alternative**: `[-+]{0,1}[0-9]{1,}`
 
-Matches negative or positive number of one or more digits. To use a minus (hyphen) in a group  
+Matches negative or positive integer of one or more digits. To use a minus (hyphen) in a group  
 you can put it as the first character in the group, the first character after a negating circumflex,  
 the last character before the closing bracket or escape it.
 
@@ -432,8 +433,8 @@ With alternative writing:
 
 ---
 
-<a name="zero-or-negative-or-positive-number"> </a>
-### Zero or negative or positive number
+<a name="zero-or-negative-or-positive-integer"> </a>
+### Zero or negative or positive integer
 
 **Expression**: `0|[-+]{0,1}[1-9]\\d{0,}`
 
@@ -492,12 +493,12 @@ Matches number zero or a negative or positive float (non zero).
 
 ---
 
-<a name="negative-or-positive-float-or-int"> </a>
-### Negative or positive float or int
+<a name="negative-or-positive-float-or-integer"> </a>
+### Negative or positive float or integer
 
 **Expression**: `[-+]{0,1}\\d{1,}(\\.\\d{1,9}){0,1}`
 
-Matches negative or positive float or int. (This expression accepts -0 and +0)
+Matches negative or positive float or integer. (This expression accepts -0 and +0)
 
   _Matches:_
 
@@ -878,14 +879,41 @@ place the failed date "1874-11-15" within the range for the expression and make 
   * true	"1920-12-31"
   * true	"2037-11-19"
   * true	"2000-01-01"
-  * true	"1968-08-19"
-  * true	"1997-02-31"
+  * true	"1968/08/19"
+  * true	"1997 02 31"
 
   _Non Matches:_
 
   * false	"1874-11-15"
   * false	"1989-13-01"
   * false	"2084-11-00"
+
+
+
+<a href="#top">^</a>
+
+---
+
+<a name="isodate"> </a>
+### IsoDate
+
+**Expression**: `(19|20)\\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])`
+
+The same as above but only for ISO-date (ISO 8601 - yyyy-mm-dd).
+
+  _Matches:_
+
+  * true	"1920-12-31"
+  * true	"2037-11-19"
+  * true	"2000-01-01"
+
+  _Non Matches:_
+
+  * false	"1874-11-15"
+  * false	"1989-13-01"
+  * false	"1968/08/19"
+  * false	"2084-11-00"
+  * false	"1997 02 31"
 
 
 
@@ -925,10 +953,11 @@ not wether they are correct.
 <a name="swedish-social-security-number---improved"> </a>
 ### Swedish social security number - Improved
 
-**Expression**: `(19\\d{2}|20[01]\\d|\\d{2})(0[1-9]|1[0-2])(0[1-9]|[1-2]\\d|3[0-1])-{0,1}\\d{4}`
+**Expression**: `(19|20){0,1}\\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-2]\\d|3[0-1])-{0,1}\\d{4}`
 
 A somewhat better matching of the Swedish social security number. six or eight digits, an optional  
-hyphen and four digits. Note that the first four non-matching numbers matched the initial attempt.
+hyphen and four digits. Note that the first four non-matching numbers matched the initial attempt.  
+To make a validation of the last digit (control digit) you need to use more than a regexp
 
   _Matches:_
 

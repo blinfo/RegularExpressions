@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  */
 public class RegExpMarkdown {
 
-    private final RegExpProvider provider = new RegExpProvider();
+    private final SourceProvider provider = new SourceProvider();
     private final File file;
 
     public RegExpMarkdown(File file) {
