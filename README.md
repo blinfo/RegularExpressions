@@ -908,7 +908,7 @@ Matches the typical role playing die pattern: 3D6+2, 1D3-1, 4D8 and the Swedish 
 
 **Expression**: `(\\d+)([dDtT]{1})(\\d+)([-*/+]?)(\\d*)`
 
-Almost the same as <a href="#role-playing-die">the previous</a>, but with grouping for parsing like in the <a href="./blob/master/src/main/java/se/blinfo/regexp/sample/RolePlayingDieValidator.java">RolePlayingDieParser</a>.
+Almost the same as <a href="#role-playing-die">the previous</a>, but with grouping for parsing like in the <a href="./src/main/java/se/blinfo/regexp/sample/RolePlayingDieValidator.java">RolePlayingDieParser</a>.
 
   _Matches:_
 

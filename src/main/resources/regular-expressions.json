@@ -177,7 +177,7 @@
         },
         {
             "title": "Role playing die with grouping",
-            "description": "Almost the same as <a href=\"#role-playing-die\">the previous</a>, but with grouping for parsing like in the <a href=\"./blob/master/src/main/java/se/blinfo/regexp/sample/RolePlayingDieValidator.java\">RolePlayingDieParser</a>.",
+            "description": "Almost the same as <a href=\"#role-playing-die\">the previous</a>, but with grouping for parsing like in the <a href=\"./src/main/java/se/blinfo/regexp/sample/RolePlayingDieValidator.java\">RolePlayingDieParser</a>.",
             "regexp": "(\\d+)([dDtT]{1})(\\d+)([-*/+]?)(\\d*)",
             "matches": ["2D6", "4d8", "1T20", "5D4+5", "1D100", "9D2-9"],
             "nonMatches": ["D10", "2C4", "11"]
