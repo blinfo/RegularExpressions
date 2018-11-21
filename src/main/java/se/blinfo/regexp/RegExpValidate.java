@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import se.blinfo.regexp.sample.IsoDateValidator;
 import se.blinfo.regexp.sample.LicenceNumberValidator;
+import se.blinfo.regexp.sample.RolePlayingDieValidator;
 import se.blinfo.regexp.sample.SwedishSocialSecurityNumberValidator;
 import se.blinfo.regexp.sample.Validator;
 
@@ -33,6 +34,11 @@ public class RegExpValidate {
         VALIDATOR_LIST.add(new LicenceNumberValidator("BUT 010"));
         VALIDATOR_LIST.add(new LicenceNumberValidator("APV 000"));
         VALIDATOR_LIST.add(new LicenceNumberValidator("WWW123"));
+        VALIDATOR_LIST.add(new RolePlayingDieValidator("4D6+4"));
+        VALIDATOR_LIST.add(new RolePlayingDieValidator("3D8-3"));
+        VALIDATOR_LIST.add(new RolePlayingDieValidator("1D10"));
+        VALIDATOR_LIST.add(new RolePlayingDieValidator("4d6"));
+        VALIDATOR_LIST.add(new RolePlayingDieValidator("1T8"));
     }
     
     public void run() {

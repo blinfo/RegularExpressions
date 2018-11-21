@@ -22,6 +22,7 @@ public class IsoDateValidator extends AbstractValidator {
         boolean valid = false;
         Matcher matcher = pattern.matcher(input);
         if (matcher.matches()) {
+            // Read the input again.
             matcher.reset();
             if (matcher.find()) {
                 Integer year = Integer.parseInt(matcher.group(1));

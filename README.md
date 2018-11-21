@@ -23,10 +23,13 @@
   * <a href="#single-non-white-space">Single non white space</a>
   * <a href="#new-line">New line</a>
   * <a href="#single-white-space-or-digit">Single white space or digit</a>
+  * <a href="#role-playing-die">Role playing die</a>
+  * <a href="#role-playing-die-with-grouping">Role playing die with grouping</a>
   * <a href="#date---a-fairly-good-match">Date - a fairly good match</a>
-  * <a href="#isodate">IsoDate</a>
+  * <a href="#iso-date">ISO-Date</a>
   * <a href="#swedish-social-security-number---initial-attempt">Swedish social security number - Initial attempt</a>
   * <a href="#swedish-social-security-number---improved">Swedish social security number - Improved</a>
+  * <a href="#email-address---a-pretty-simple-example">Email address - A pretty simple example</a>
   * <a href="#swedish-car-number">Swedish car number</a>
 
 
@@ -151,7 +154,9 @@ With alternative writing:
 <a name="zero-or-one-digit"> </a>
 ### Zero or one digit
 
-**Expression**: `\\d{0,1}`
+**Expression**: `\\d?`
+
+**Alternative**: `\\d{0,1}`
 
 Matches zero or one digit.
 
@@ -167,6 +172,19 @@ Matches zero or one digit.
   * false	"11"
   * false	"957"
 
+With alternative writing:
+
+  _Matches:_
+
+  * true	""
+  * true	"7"
+  * true	"4"
+
+  _Non Matches:_
+
+  * false	"a"
+  * false	"11"
+  * false	"957"
 
 
 <a href="#top">^</a>
@@ -386,13 +404,11 @@ With alternative writing:
 <a name="negative-or-positive-integer"> </a>
 ### Negative or positive integer
 
-**Expression**: `[+\\-]{0,1}\\d+`
+**Expression**: `[+\\-]?\\d+`
 
-**Alternative**: `[-+]{0,1}[0-9]{1,}`
+**Alternative**: `[-+]?[0-9]{1,}`
 
-Matches negative or positive integer of one or more digits. To use a minus (hyphen) in a group  
-you can put it as the first character in the group, the first character after a negating circumflex,  
-the last character before the closing bracket or escape it.
+Matches negative or positive integer of one or more digits. To use a minus (hyphen) in a group you can put it as the first character in the group, the first character after a negating circumflex, the last character before the closing bracket or escape it.
 
   _Matches:_
 
@@ -436,7 +452,7 @@ With alternative writing:
 <a name="zero-or-negative-or-positive-integer"> </a>
 ### Zero or negative or positive integer
 
-**Expression**: `0|[-+]{0,1}[1-9]\\d{0,}`
+**Expression**: `0|[-+]?[1-9]\\d{0,}`
 
 Matches number zero or a negative or positive non zero of one or more digits.
 
@@ -465,9 +481,9 @@ Matches number zero or a negative or positive non zero of one or more digits.
 <a name="zero-or-negative-or-positive-float"> </a>
 ### Zero or negative or positive float
 
-**Expression**: `0|[-+]{0,1}\\d{1,}\\.\\d{1,9}`
+**Expression**: `0|[-+]?\\d+\\.\\d+`
 
-Matches number zero or a negative or positive float (non zero).
+Matches number zero or a negative or positive float (non zero) with required zero before floating point.
 
   _Matches:_
 
@@ -496,26 +512,26 @@ Matches number zero or a negative or positive float (non zero).
 <a name="negative-or-positive-float-or-integer"> </a>
 ### Negative or positive float or integer
 
-**Expression**: `[-+]{0,1}\\d{1,}(\\.\\d{1,9}){0,1}`
+**Expression**: `[-+]?\\d*\\.?\\d+`
 
-Matches negative or positive float or integer. (This expression accepts -0 and +0)
+Matches negative or positive float or integer with optional zero before floating point.
 
   _Matches:_
 
   * true	"0.1"
+  * true	".5"
   * true	"-19.0"
-  * true	"4.0154"
+  * true	"3.13159"
   * true	"-0.534"
   * true	"+0.24"
+  * true	"-.4334546"
   * true	"11"
   * true	"0"
-  * true	"+0"
 
   _Non Matches:_
 
   * false	"-"
   * false	"a4"
-  * false	".5"
   * false	"1+1"
   * false	"-11,2"
   * false	"1+"
@@ -534,8 +550,7 @@ Matches negative or positive float or integer. (This expression accepts -0 and +
 
 **Alternative**: `[a-zA-Z_0-9]`
 
-Matches one English letter, one digit or underscore. This character class is not very  
-reliable so the alternative writing is to be preferred.
+Matches one English letter, one digit or underscore. This character class is highly unreliable so the alternative writing is to be preferred.
 
   _Matches:_
 
@@ -606,8 +621,7 @@ Matches one Swedish letter.
 
 **Expression**: `[0-9a-fQXZ£€$]`
 
-Matches digit, lower case letters a through f, upper case letters Q, X or Z and money  
-symbols £, € and $.
+Matches digit, lower case letters a through f, upper case letters Q, X or Z and money symbols £, € and $.
 
   _Matches:_
 
@@ -681,8 +695,7 @@ With alternative writing:
 
 **Expression**: `.`
 
-Matches any character that is not a new line. The non matching characters in the  
-example below are \\r\\n, \\r, \\n
+Matches any character that is not a new line. The non matching characters in the example below are \\r\\n, \\r, \\n
 
   _Matches:_
 
@@ -714,8 +727,7 @@ example below are \\r\\n, \\r, \\n
 
 **Expression**: `\\s`
 
-Matches whitespace characters, like new line, carriage return, tab and space. The matching characters in the  
-example below are \\r\\n, \\r, \\n, space and \\f
+Matches whitespace characters, like new line, carriage return, tab and space. The matching characters in the example below are \\r\\n, \\r, \\n, space and \\f
 
   _Matches:_
 
@@ -798,8 +810,7 @@ With alternative writing:
 
 **Alternative**: `\\r{0,1}\\n`
 
-Matches new line both in windows and unix-like os (mac). Windows uses CRLF (\\r\\n) while other uses only LF (\\n)  
-The strings that matches below are \\n and \\r\\n, the non-matching strings are \\n\\r and \\t.
+Matches new line both in windows and unix-like os (mac). Windows uses CRLF (\\r\\n) while other uses only LF (\\n). The strings that matches below are \\n and \\r\\n, the non-matching strings are \\n\\r and \\t.
 
   _Matches:_
 
@@ -864,15 +875,68 @@ Matches whitespace characters, like new line, carriage return, tab and space and
 
 ---
 
+<a name="role-playing-die"> </a>
+### Role playing die
+
+**Expression**: `\\d+[dDtT]{1}\\d+([-*/+]?\\d*)?`
+
+Matches the typical role playing die pattern: 3D6+2, 1D3-1, 4D8 and the Swedish model 4T6. Does not care about the typical number of sides of the typical dice.
+
+  _Matches:_
+
+  * true	"2D6"
+  * true	"4d8"
+  * true	"1T20"
+  * true	"5D4+5"
+  * true	"1D100"
+  * true	"9D2-9"
+
+  _Non Matches:_
+
+  * false	"D10"
+  * false	"2C4"
+  * false	"11"
+
+
+
+<a href="#top">^</a>
+
+---
+
+<a name="role-playing-die-with-grouping"> </a>
+### Role playing die with grouping
+
+**Expression**: `(\\d+)([dDtT]{1})(\\d+)([-*/+]?)(\\d*)`
+
+Almost the same as <a href="#role-playing-die">the previous</a>, but with grouping for parsing like in the <a href="blob/master/src/main/java/se/blinfo/regexp/sample/RolePlayingDieParser.java">RolePlayingDieParser</a>.
+
+  _Matches:_
+
+  * true	"2D6"
+  * true	"4d8"
+  * true	"1T20"
+  * true	"5D4+5"
+  * true	"1D100"
+  * true	"9D2-9"
+
+  _Non Matches:_
+
+  * false	"D10"
+  * false	"2C4"
+  * false	"11"
+
+
+
+<a href="#top">^</a>
+
+---
+
 <a name="date---a-fairly-good-match"> </a>
 ### Date - a fairly good match
 
 **Expression**: `(19|20)\\d{2}[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])`
 
-A fairly good matching of dates. It does not handel the number of days for each month and  
-consequently not leap years. Thus an invalid date like "1997-02-31" will still match.   
-To add another century, add a it to the start of the expression: "(18|19|20)\\d{2}", which would  
-place the failed date "1874-11-15" within the range for the expression and make it match.
+A fairly good matching of dates. It does not handel the number of days for each month and consequently not leap years. Thus an invalid date like "1997-02-31" will still match.  To add another century, add a it to the start of the expression: "(18|19|20)\\d{2}", which would place the failed date "1874-11-15" within the range for the expression and make it match.
 
   _Matches:_
 
@@ -894,12 +958,12 @@ place the failed date "1874-11-15" within the range for the expression and make 
 
 ---
 
-<a name="isodate"> </a>
-### IsoDate
+<a name="iso-date"> </a>
+### ISO-Date
 
 **Expression**: `(19|20)\\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])`
 
-The same as above but only for ISO-date (ISO 8601 - yyyy-mm-dd).
+The same <a href="#date---a-fairly-good-match">as above</a> but only for ISO-date (ISO 8601 - yyyy-mm-dd).
 
   _Matches:_
 
@@ -926,9 +990,7 @@ The same as above but only for ISO-date (ISO 8601 - yyyy-mm-dd).
 
 **Expression**: `(\\d{2}){0,1}\\d{6}-{0,1}\\d{4}`
 
-Simple matching of the Swedish social security number. six or eight digits, an optional  
-hyphen and four digits. This expressions only checks for the right number or digits,  
-not wether they are correct.
+Simple matching of the Swedish social security number. six or eight digits, an optional hyphen and four digits. This expressions only checks for the right number or digits, not wether they are correct.
 
   _Matches:_
 
@@ -955,9 +1017,7 @@ not wether they are correct.
 
 **Expression**: `(19|20){0,1}\\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-2]\\d|3[0-1])-{0,1}\\d{4}`
 
-A somewhat better matching of the Swedish social security number. six or eight digits, an optional  
-hyphen and four digits. Note that the first four non-matching numbers matched the initial attempt.  
-To make a validation of the last digit (control digit) you need to use more than a regexp
+A somewhat better matching of the Swedish social security number. six or eight digits, an optional hyphen and four digits. Note that the first four non-matching numbers matched the initial attempt. To make a validation of the last digit (control digit) you need to use more than a regexp
 
   _Matches:_
 
@@ -984,6 +1044,37 @@ To make a validation of the last digit (control digit) you need to use more than
 
 ---
 
+<a name="email-address---a-pretty-simple-example"> </a>
+### Email address - A pretty simple example
+
+**Expression**: `[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}`
+
+Matches email address pattern.
+
+  _Matches:_
+
+  * true	"h.l@fejk.com"
+  * true	"H_L@FEKJ.COM"
+  * true	"snisse%b@blinfo.se"
+  * true	"Info@hex.nu"
+  * true	"Kalle-Nilsson@KalleNilsson.com"
+  * true	"a+b@math.org"
+  * true	"a@b.c.de"
+
+  _Non Matches:_
+
+  * false	"abc@123"
+  * false	"pelle/lisa@gmail.com"
+  * false	"IIV 453@plates.nu"
+  * false	"DEF@4567:se"
+  * false	"info(AT)company.com"
+
+
+
+<a href="#top">^</a>
+
+---
+
 <a name="swedish-car-number"> </a>
 ### Swedish car number
 
@@ -991,10 +1082,7 @@ To make a validation of the last digit (control digit) you need to use more than
 
 **Alternative**: `[A-Z&&[^IQV]]{3} {0,1}(0\\d[A-Z1-9&&[^IQV]]|[1-9]\\d[A-Z0-9&&[^IQV]])`
 
-Matches the Swedish licence plate number. Three upper case letters A-H, J-P, R-U or W-Z  
-followed by 001 - 999 or 00 - 99 plus upper case letter A-H, J-P, R-U or W-Z.  
-Some letter combinations are removed, like KKK, PKK and a few others, but this  
-expression does not handle these numbers.
+Matches the Swedish licence plate number. Three upper case letters A-H, J-P, R-U or W-Z followed by 001 - 999 or 00 - 99 plus upper case letter A-H, J-P, R-U or W-Z. Some letter combinations are removed, like KKK, PKK and a few others, but this expression does not handle these numbers.
 
   _Matches:_
 
