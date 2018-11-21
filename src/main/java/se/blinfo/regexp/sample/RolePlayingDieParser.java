@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
  */
 public class RolePlayingDieParser {
 
-    private static final String REG_EXP = "(\\d+)([dDtT]{1})(\\d+)([-*/+]?)(\\d*)";
+    private static final String REG_EXP = "(\\d+)([dDtT]{1})(\\d+)([-+]?)(\\d*)";
     private static final Pattern PATTERN = Pattern.compile(REG_EXP);
     private static final int NUMBER_OF_DICE = 1,
             DIE_MAX = 3, OPERATOR = 4, MODIFIER = 5;

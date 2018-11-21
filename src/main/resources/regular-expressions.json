@@ -171,14 +171,14 @@
         {
             "title": "Role playing die",
             "description": "Matches the typical role playing die pattern: 3D6+2, 1D3-1, 4D8 and the Swedish model 4T6. Does not care about the typical number of sides of the typical dice.",
-            "regexp": "\\d+[dDtT]{1}\\d+([-*/+]?\\d*)?",
+            "regexp": "\\d+[dDtT]{1}\\d+([-+]?\\d*)?",
             "matches": ["2D6", "4d8", "1T20", "5D4+5", "1D100", "9D2-9"],
             "nonMatches": ["D10", "2C4", "11"]
         },
         {
             "title": "Role playing die with grouping",
             "description": "Almost the same as <a href=\"#role-playing-die\">the previous</a>, but with grouping for parsing like in the <a href=\"./src/main/java/se/blinfo/regexp/sample/RolePlayingDieValidator.java\">RolePlayingDieParser</a>.",
-            "regexp": "(\\d+)([dDtT]{1})(\\d+)([-*/+]?)(\\d*)",
+            "regexp": "(\\d+)([dDtT]{1})(\\d+)([-+]?)(\\d*)",
             "matches": ["2D6", "4d8", "1T20", "5D4+5", "1D100", "9D2-9"],
             "nonMatches": ["D10", "2C4", "11"]
         },

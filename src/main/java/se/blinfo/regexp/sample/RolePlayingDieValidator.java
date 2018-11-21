@@ -6,7 +6,7 @@ package se.blinfo.regexp.sample;
  */
 public class RolePlayingDieValidator extends AbstractValidator {
 
-    private static final String REG_EXP = "(\\d+)([dDtT]{1})(\\d+)([-*/+]?)(\\d*)";
+    private static final String REG_EXP = "(\\d+)([dDtT]{1})(\\d+)([-+]?)(\\d*)";
 
     public RolePlayingDieValidator(String input) {
         super(input, REG_EXP);

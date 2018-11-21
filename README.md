@@ -878,7 +878,7 @@ Matches whitespace characters, like new line, carriage return, tab and space and
 <a name="role-playing-die"> </a>
 ### Role playing die
 
-**Expression**: `\\d+[dDtT]{1}\\d+([-*/+]?\\d*)?`
+**Expression**: `\\d+[dDtT]{1}\\d+([-+]?\\d*)?`
 
 Matches the typical role playing die pattern: 3D6+2, 1D3-1, 4D8 and the Swedish model 4T6. Does not care about the typical number of sides of the typical dice.
 
@@ -906,7 +906,7 @@ Matches the typical role playing die pattern: 3D6+2, 1D3-1, 4D8 and the Swedish 
 <a name="role-playing-die-with-grouping"> </a>
 ### Role playing die with grouping
 
-**Expression**: `(\\d+)([dDtT]{1})(\\d+)([-*/+]?)(\\d*)`
+**Expression**: `(\\d+)([dDtT]{1})(\\d+)([-+]?)(\\d*)`
 
 Almost the same as <a href="#role-playing-die">the previous</a>, but with grouping for parsing like in the <a href="./src/main/java/se/blinfo/regexp/sample/RolePlayingDieValidator.java">RolePlayingDieParser</a>.
 
