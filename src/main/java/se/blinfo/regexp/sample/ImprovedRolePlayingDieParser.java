@@ -28,10 +28,10 @@ import java.util.stream.IntStream;
  */
 public class ImprovedRolePlayingDieParser {
 
-    private static final String REG_EXP = "(\\d+)([dDtT])(\\d+)(([-+])(\\d*))?";
+    private static final String REG_EXP = "(\\d+)[dDtT](\\d+)(([-+])(\\d*))?";
     private static final Pattern PATTERN = Pattern.compile(REG_EXP);
     private static final int NUMBER_OF_DICE = 1,
-            DIE_MAX = 3, OPERATOR = 5, MODIFIER = 6;
+            DIE_MAX = 2, OPERATOR = 4, MODIFIER = 5;
 
     public static Integer roll(String dieString) {
         if (dieString == null) {

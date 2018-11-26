@@ -32,7 +32,6 @@
   * <a href="#swedish-social-security-number---initial-attempt">Swedish social security number - Initial attempt</a>
   * <a href="#swedish-social-security-number---improved">Swedish social security number - Improved</a>
   * <a href="#email-address---a-pretty-simple-example">Email address - A pretty simple example</a>
-  * <a href="#html-link">HTML Link</a>
   * <a href="#swedish-car-number">Swedish car number</a>
 
 
@@ -824,7 +823,7 @@ Matches whitespace characters, like new line, carriage return, tab and space. Th
 
 **Alternative**: `[^\\s]`
 
-Matches non whitespace characters, like letter, digit or other symbol.
+Matches non whitespace characters, like letter, digit or other symbol. The non matching characters in the example below are \\r, \\n, \\t, space and \\f
 
   _Matches:_
 
@@ -948,7 +947,7 @@ Matches whitespace characters, like new line, carriage return, tab and space and
 
 **Expression**: `\\d+[dDtT]\\d+([-+]?\\d*)?`
 
-Matches the typical role playing die pattern: 3D6+2, 1D3-1, 4D8 and the Swedish model 4T6. Does not care about the typical number of sides of the typical dice.
+Matches the typical role playing die pattern: 3D6+2, 1D3-1, 4D8 and the Swedish model 4T6. Does not care about the number of sides of the typical dice.
 
   _Matches:_
 
@@ -974,7 +973,7 @@ Matches the typical role playing die pattern: 3D6+2, 1D3-1, 4D8 and the Swedish 
 <a name="role-playing-die-with-grouping"> </a>
 ### Role playing die with grouping
 
-**Expression**: `(\\d+)([dDtT])(\\d+)([-+]?)(\\d*)`
+**Expression**: `(\\d+)[dDtT](\\d+)([-+]?)(\\d*)`
 
 Almost the same as <a href="#role-playing-die">the previous</a>, but with grouping for parsing like in the <a href="./src/main/java/se/blinfo/regexp/sample/ImprovedRolePlayingDieValidator.java">ImprovedRolePlayingDieParser</a>.
 
@@ -1118,37 +1117,6 @@ A somewhat better matching of the Swedish social security number. six or eight d
 **Expression**: `[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}`
 
 Matches email address pattern.
-
-  _Matches:_
-
-  * true	"h.l@fejk.com"
-  * true	"H_L@FEKJ.COM"
-  * true	"snisse%b@blinfo.se"
-  * true	"Info@hex.nu"
-  * true	"Kalle-Nilsson@KalleNilsson.com"
-  * true	"a+b@math.org"
-  * true	"a@b.c.de"
-
-  _Non Matches:_
-
-  * false	"abc@123"
-  * false	"pelle/lisa@gmail.com"
-  * false	"IIV 453@plates.nu"
-  * false	"DEF@4567:se"
-  * false	"info(AT)company.com"
-
-
-
-<a href="#top">^</a>
-
----
-
-<a name="html-link"> </a>
-### HTML Link
-
-**Expression**: `[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}`
-
-Matches link and captures url and link text.
 
   _Matches:_
 

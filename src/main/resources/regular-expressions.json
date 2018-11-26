@@ -162,7 +162,7 @@
         },
         {
             "title": "Single non white space",
-            "description": "Matches non whitespace characters, like letter, digit or other symbol.",
+            "description": "Matches non whitespace characters, like letter, digit or other symbol. The non matching characters in the example below are \\r, \\n, \\t, space and \\f",
             "regexp": "\\S",
             "alternativeRegexp": "[^\\s]",
             "matches": ["a", "x", "Ö", "+", "0", "&", "¥"],
@@ -185,7 +185,7 @@
         },
         {
             "title": "Role playing die",
-            "description": "Matches the typical role playing die pattern: 3D6+2, 1D3-1, 4D8 and the Swedish model 4T6. Does not care about the typical number of sides of the typical dice.",
+            "description": "Matches the typical role playing die pattern: 3D6+2, 1D3-1, 4D8 and the Swedish model 4T6. Does not care about the number of sides of the typical dice.",
             "regexp": "\\d+[dDtT]\\d+([-+]?\\d*)?",
             "matches": ["2D6", "4d8", "1T20", "5D4+5", "1D100", "9D2-9"],
             "nonMatches": ["D10", "2C4", "11"]
@@ -193,7 +193,7 @@
         {
             "title": "Role playing die with grouping",
             "description": "Almost the same as <a href=\"#role-playing-die\">the previous</a>, but with grouping for parsing like in the <a href=\"./src/main/java/se/blinfo/regexp/sample/ImprovedRolePlayingDieValidator.java\">ImprovedRolePlayingDieParser</a>.",
-            "regexp": "(\\d+)([dDtT])(\\d+)([-+]?)(\\d*)",
+            "regexp": "(\\d+)[dDtT](\\d+)([-+]?)(\\d*)",
             "matches": ["2D6", "4d8", "1T20", "5D4+5", "1D100", "9D2-9"],
             "nonMatches": ["D10", "2C4", "11"]
         },
@@ -228,13 +228,6 @@
         {
             "title": "Email address - A pretty simple example",
             "description": "Matches email address pattern.",
-            "regexp": "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}",
-            "matches": ["h.l@fejk.com", "H_L@FEKJ.COM", "snisse%b@blinfo.se", "Info@hex.nu", "Kalle-Nilsson@KalleNilsson.com", "a+b@math.org", "a@b.c.de"],
-            "nonMatches": ["abc@123", "pelle/lisa@gmail.com", "IIV 453@plates.nu", "DEF@4567:se", "info(AT)company.com"]
-        },
-        {
-            "title": "HTML Link",
-            "description": "Matches link and captures url and link text.",
             "regexp": "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}",
             "matches": ["h.l@fejk.com", "H_L@FEKJ.COM", "snisse%b@blinfo.se", "Info@hex.nu", "Kalle-Nilsson@KalleNilsson.com", "a+b@math.org", "a@b.c.de"],
             "nonMatches": ["abc@123", "pelle/lisa@gmail.com", "IIV 453@plates.nu", "DEF@4567:se", "info(AT)company.com"]
