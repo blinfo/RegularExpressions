@@ -3,6 +3,8 @@
 
   * <a href="#single-digit">Single digit</a>
   * <a href="#single-non-digit">Single non digit</a>
+  * <a href="#single-dot">Single dot</a>
+  * <a href="#single-hyphen">Single hyphen</a>
   * <a href="#zero-or-more-digits">Zero or more digits</a>
   * <a href="#zero-or-one-digit">Zero or one digit</a>
   * <a href="#one-or-more-digits">One or more digits</a>
@@ -30,6 +32,7 @@
   * <a href="#swedish-social-security-number---initial-attempt">Swedish social security number - Initial attempt</a>
   * <a href="#swedish-social-security-number---improved">Swedish social security number - Improved</a>
   * <a href="#email-address---a-pretty-simple-example">Email address - A pretty simple example</a>
+  * <a href="#html-link">HTML Link</a>
   * <a href="#swedish-car-number">Swedish car number</a>
 
 
@@ -54,6 +57,7 @@ Matches exactly one digit.
   * false	"a"
   * false	"P"
   * false	"@"
+  * false	"11"
 
 With alternative writing:
 
@@ -67,6 +71,7 @@ With alternative writing:
   * false	"a"
   * false	"P"
   * false	"@"
+  * false	"11"
 
 
 <a href="#top">^</a>
@@ -87,11 +92,13 @@ Matches exactly one character which can not be a digit. The circumflex as the fi
   * true	"a"
   * true	"P"
   * true	"@"
+  * true	"."
 
   _Non Matches:_
 
   * false	"1"
   * false	"7"
+  * false	"pt"
 
 With alternative writing:
 
@@ -100,11 +107,72 @@ With alternative writing:
   * true	"a"
   * true	"P"
   * true	"@"
+  * true	"."
 
   _Non Matches:_
 
   * false	"1"
   * false	"7"
+  * false	"pt"
+
+
+<a href="#top">^</a>
+
+---
+
+<a name="single-dot"> </a>
+### Single dot
+
+**Expression**: `\\.`
+
+Matches exactly one dot (.). The dot is a meta character and must be escaped.
+
+  _Matches:_
+
+  * true	"."
+
+  _Non Matches:_
+
+  * false	"1"
+  * false	","
+  * false	".."
+
+
+
+<a href="#top">^</a>
+
+---
+
+<a name="single-hyphen"> </a>
+### Single hyphen
+
+**Expression**: `\\-`
+
+**Alternative**: `[-]`
+
+Matches exactly one hyphen or minus (-). The minus sign is a meta character and must be escaped unless it occurs first or last in a square bracket group: "[-+a-z]" which matches plus, minus or lower case letters a through z, or "[0-5-]" which matches a minus or number zero through five.
+
+  _Matches:_
+
+  * true	"-"
+
+  _Non Matches:_
+
+  * false	"?"
+  * false	"_"
+  * false	"--"
+
+With alternative writing:
+
+  _Matches:_
+
+  * true	"-"
+
+  _Non Matches:_
+
+  * false	"?"
+  * false	"_"
+  * false	"--"
 
 
 <a href="#top">^</a>
@@ -908,7 +976,7 @@ Matches the typical role playing die pattern: 3D6+2, 1D3-1, 4D8 and the Swedish 
 
 **Expression**: `(\\d+)([dDtT])(\\d+)([-+]?)(\\d*)`
 
-Almost the same as <a href="#role-playing-die">the previous</a>, but with grouping for parsing like in the <a href="./src/main/java/se/blinfo/regexp/sample/RolePlayingDieValidator.java">RolePlayingDieParser</a>.
+Almost the same as <a href="#role-playing-die">the previous</a>, but with grouping for parsing like in the <a href="./src/main/java/se/blinfo/regexp/sample/ImprovedRolePlayingDieValidator.java">ImprovedRolePlayingDieParser</a>.
 
   _Matches:_
 
@@ -936,7 +1004,7 @@ Almost the same as <a href="#role-playing-die">the previous</a>, but with groupi
 
 **Expression**: `(19|20)\\d{2}[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])`
 
-A fairly good matching of dates. It does not handel the number of days for each month and consequently not leap years. Thus an invalid date like "1997-02-31" will still match.  To add another century, add a it to the start of the expression: "(18|19|20)\\d{2}", which would place the failed date "1874-11-15" within the range for the expression and make it match.
+A fairly good matching of dates. It does not handel the number of days for each month and consequently not leap years. Thus an invalid date like "1997-02-31" will still match. To add another century, add a it to the start of the expression: "(18|19|20)\\d{2}", which would place the failed date "1874-11-15" within the range for the expression and make it match.
 
   _Matches:_
 
@@ -1050,6 +1118,37 @@ A somewhat better matching of the Swedish social security number. six or eight d
 **Expression**: `[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}`
 
 Matches email address pattern.
+
+  _Matches:_
+
+  * true	"h.l@fejk.com"
+  * true	"H_L@FEKJ.COM"
+  * true	"snisse%b@blinfo.se"
+  * true	"Info@hex.nu"
+  * true	"Kalle-Nilsson@KalleNilsson.com"
+  * true	"a+b@math.org"
+  * true	"a@b.c.de"
+
+  _Non Matches:_
+
+  * false	"abc@123"
+  * false	"pelle/lisa@gmail.com"
+  * false	"IIV 453@plates.nu"
+  * false	"DEF@4567:se"
+  * false	"info(AT)company.com"
+
+
+
+<a href="#top">^</a>
+
+---
+
+<a name="html-link"> </a>
+### HTML Link
+
+**Expression**: `[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}`
+
+Matches link and captures url and link text.
 
   _Matches:_
 

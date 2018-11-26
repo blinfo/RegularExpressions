@@ -6,15 +6,30 @@
             "regexp": "\\d",
             "alternativeRegexp": "[0-9]",
             "matches": ["1", "7"],
-            "nonMatches": ["a", "P", "@"]
+            "nonMatches": ["a", "P", "@", "11"]
         },
         {
             "title": "Single non digit",
             "description": "Matches exactly one character which can not be a digit. The circumflex as the first character in the brackets means \"NOT\"",
             "regexp": "\\D",
             "alternativeRegexp": "[^0-9]",
-            "matches": ["a", "P", "@"],
-            "nonMatches": ["1", "7"]
+            "matches": ["a", "P", "@", "."],
+            "nonMatches": ["1", "7", "pt"]
+        },
+        {
+            "title": "Single dot",
+            "description": "Matches exactly one dot (.). The dot is a meta character and must be escaped.",
+            "regexp": "\\.",
+            "matches": ["."],
+            "nonMatches": ["1", ",", ".."]
+        },
+        {
+            "title": "Single hyphen",
+            "description": "Matches exactly one hyphen or minus (-). The minus sign is a meta character and must be escaped unless it occurs first or last in a square bracket group: \"[-+a-z]\" which matches plus, minus or lower case letters a through z, or \"[0-5-]\" which matches a minus or number zero through five.",
+            "regexp": "\\-",
+            "alternativeRegexp": "[-]",
+            "matches": ["-"],
+            "nonMatches": ["?", "_", "--"]
         },
         {
             "title": "Zero or more digits",
@@ -177,14 +192,14 @@
         },
         {
             "title": "Role playing die with grouping",
-            "description": "Almost the same as <a href=\"#role-playing-die\">the previous</a>, but with grouping for parsing like in the <a href=\"./src/main/java/se/blinfo/regexp/sample/RolePlayingDieValidator.java\">RolePlayingDieParser</a>.",
+            "description": "Almost the same as <a href=\"#role-playing-die\">the previous</a>, but with grouping for parsing like in the <a href=\"./src/main/java/se/blinfo/regexp/sample/ImprovedRolePlayingDieValidator.java\">ImprovedRolePlayingDieParser</a>.",
             "regexp": "(\\d+)([dDtT])(\\d+)([-+]?)(\\d*)",
             "matches": ["2D6", "4d8", "1T20", "5D4+5", "1D100", "9D2-9"],
             "nonMatches": ["D10", "2C4", "11"]
         },
         {
             "title": "Date - a fairly good match",
-            "description": "A fairly good matching of dates. It does not handel the number of days for each month and consequently not leap years. Thus an invalid date like \"1997-02-31\" will still match.  To add another century, add a it to the start of the expression: \"(18|19|20)\\d{2}\", which would place the failed date \"1874-11-15\" within the range for the expression and make it match.",
+            "description": "A fairly good matching of dates. It does not handel the number of days for each month and consequently not leap years. Thus an invalid date like \"1997-02-31\" will still match. To add another century, add a it to the start of the expression: \"(18|19|20)\\d{2}\", which would place the failed date \"1874-11-15\" within the range for the expression and make it match.",
             "regexp": "(19|20)\\d{2}[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])",
             "matches": ["1920-12-31", "2037-11-19", "2000-01-01", "1968/08/19", "1997 02 31"],
             "nonMatches": ["1874-11-15", "1989-13-01", "2084-11-00"]
@@ -213,6 +228,13 @@
         {
             "title": "Email address - A pretty simple example",
             "description": "Matches email address pattern.",
+            "regexp": "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}",
+            "matches": ["h.l@fejk.com", "H_L@FEKJ.COM", "snisse%b@blinfo.se", "Info@hex.nu", "Kalle-Nilsson@KalleNilsson.com", "a+b@math.org", "a@b.c.de"],
+            "nonMatches": ["abc@123", "pelle/lisa@gmail.com", "IIV 453@plates.nu", "DEF@4567:se", "info(AT)company.com"]
+        },
+        {
+            "title": "HTML Link",
+            "description": "Matches link and captures url and link text.",
             "regexp": "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}",
             "matches": ["h.l@fejk.com", "H_L@FEKJ.COM", "snisse%b@blinfo.se", "Info@hex.nu", "Kalle-Nilsson@KalleNilsson.com", "a+b@math.org", "a@b.c.de"],
             "nonMatches": ["abc@123", "pelle/lisa@gmail.com", "IIV 453@plates.nu", "DEF@4567:se", "info(AT)company.com"]

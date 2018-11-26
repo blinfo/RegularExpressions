@@ -19,7 +19,7 @@ import java.util.stream.IntStream;
  * <li>optional value to add or subtract, depending on the previous
  * character</li>
  * </ol>
- * I. e. "3D6+3", "1D10-1" or "4D4"
+ * E. g. "3D6+3", "1D10-1" or "4D4"
  * <p>
  * If the input string is valid it is parsed and the roll is performed and
  * returned.

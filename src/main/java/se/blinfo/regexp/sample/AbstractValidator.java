@@ -1,10 +1,13 @@
 package se.blinfo.regexp.sample;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  *
  * @author hl
  */
-abstract class AbstractValidator implements Validator {
+public abstract class AbstractValidator implements Validator {
 
     protected final String input;
     protected final String regExp;
@@ -14,4 +17,12 @@ abstract class AbstractValidator implements Validator {
         this.regExp = regExp;
     }
 
+    @Override
+    public Result validate() {
+        if (regExp == null || regExp.isEmpty()) {
+            throw new IllegalArgumentException("The regular expression must not be null or empty string!");
+        }
+        Matcher matcher = Pattern.compile(regExp).matcher(input);
+        return new Result(input, regExp, matcher.matches());
+    }
 }
