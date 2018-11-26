@@ -40,14 +40,26 @@ public class RegExpValidate {
         VALIDATOR_LIST.add(new RolePlayingDieValidator("4d6"));
         VALIDATOR_LIST.add(new RolePlayingDieValidator("1T8"));
     }
-    
+
     public void run() {
         System.out.println("Result of validations:");
-        VALIDATOR_LIST.forEach(v -> System.out.println(v.getClass().getSimpleName() + " - " + v.validate()));
+        StringBuilder builder = new StringBuilder();
+        VALIDATOR_LIST.forEach(v -> {
+            if (builder.toString().isEmpty()) {
+                builder.append(v.getClass().getSimpleName());
+                System.out.println(builder.toString() + ":");
+            } else if (!builder.toString().equals(v.getClass().getSimpleName())) {
+                builder.delete(0, builder.length());
+                builder.append(v.getClass().getSimpleName());
+                System.out.println(builder.toString());
+            }
+            System.out.println(v.validate());
+        }
+        );
     }
-    
+
     public static void main(String[] args) {
         new RegExpValidate().run();
     }
-    
+
 }

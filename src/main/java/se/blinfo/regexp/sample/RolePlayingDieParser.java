@@ -1,9 +1,6 @@
 package se.blinfo.regexp.sample;
 
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.IntStream;
 
 /**
  *
@@ -11,36 +8,56 @@ import java.util.stream.IntStream;
  */
 public class RolePlayingDieParser {
 
-    private static final String REG_EXP = "(\\d+)([dDtT]{1})(\\d+)([-+]?)(\\d*)";
-    private static final Pattern PATTERN = Pattern.compile(REG_EXP);
-    private static final int NUMBER_OF_DICE = 1,
-            DIE_MAX = 3, OPERATOR = 4, MODIFIER = 5;
+    private static final String DIE = "D";
 
-    public static Integer roll(String die) {
-        Matcher matcher = PATTERN.matcher(die);
-        if (!matcher.matches()) {
-            return 0;
+    public static Integer roll(String dieString) {
+        Integer result = null;
+        if (dieString == null) {
+            return result;
         }
-        matcher.reset();
-        if (!matcher.find()) {
-            return 0;
+        int numberOfDice;
+        int dieSize;
+        String operator = "";
+        int modifier = 0;
+        if (!dieString.contains(DIE)) {
+            return result;
         }
+        result = 0;
         try {
-            int modifier = matcher.group(MODIFIER).isEmpty() ? 0 : Integer.parseInt(matcher.group(MODIFIER));
-            Integer result = IntStream.range(0, Integer.parseInt(matcher.group(NUMBER_OF_DICE)))
-                    .map(i -> rollDie(matcher.group(DIE_MAX)))
-                    .reduce((a, b) -> a + b).orElse(0);
-            return matcher.group(OPERATOR).equals("-")
-                    ? result - modifier
-                    : matcher.group(OPERATOR).equals("+")
-                    ? result + modifier
-                    : result;
-        } catch (NumberFormatException e) {
-            return 0;
+            numberOfDice = Integer.valueOf(dieString.substring(0, dieString.indexOf(DIE)));
+            if (!dieString.contains("+") && !dieString.contains("-")) {
+                dieSize = Integer.valueOf(dieString.substring(dieString.indexOf(DIE) + 1));
+            } else if (dieString.contains("+")) {
+                dieSize = Integer.valueOf(dieString.substring(dieString.indexOf(DIE) + 1, dieString.indexOf("+")));
+                operator = "+";
+                modifier = Integer.valueOf(dieString.substring(dieString.indexOf("+") + 1));
+            } else {
+                dieSize = Integer.valueOf(dieString.substring(dieString.indexOf(DIE) + 1, dieString.indexOf("-")));
+                operator = "-";
+                modifier = Integer.valueOf(dieString.substring(dieString.indexOf("-") + 1));
+            }
+        } catch (NumberFormatException ex) {
+            return null;
         }
+        for (int i = 0; i < numberOfDice; i++) {
+            result += ThreadLocalRandom.current().nextInt(1, dieSize + 1);
+        }
+        if (operator.equals("+")) {
+            return result + modifier;
+        }
+        if (operator.equals("-")) {
+            return result - modifier;
+        }
+        return result;
     }
 
-    private static int rollDie(String dieMax) throws NumberFormatException {
-        return ThreadLocalRandom.current().nextInt(0, Integer.parseInt(dieMax)) + 1;
+    public static void main(String[] args) {
+        System.out.println(RolePlayingDieParser.roll("1D1+1"));
+        System.out.println(RolePlayingDieParser.roll("1D1-1"));
+        System.out.println(RolePlayingDieParser.roll("1D1"));
+        System.out.println(RolePlayingDieParser.roll("3D10+3"));
+        System.out.println(RolePlayingDieParser.roll("3D10*3"));
+        System.out.println(RolePlayingDieParser.roll("1D10+10"));
+        System.out.println(RolePlayingDieParser.roll(null));
     }
 }

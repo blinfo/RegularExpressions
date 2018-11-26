@@ -2,6 +2,15 @@ package se.blinfo.regexp.sample;
 
 /**
  *
+ * Validation of SwedishSocialSecurityNumbers
+ * <ol>
+ * <li>Check that the input string matches the pattern for security numbers</li>
+ * <li>If it is a pattern match, validate the luhn number (check the last
+ * digit). If the input string contains more then 10 <i>digits</i>, remove the
+ * first two since these are not validated. Also remove the optional hyphen
+ * ("-").</li>
+ * </ol>
+ *
  * @author hl
  */
 public class SwedishSocialSecurityNumberValidator extends AbstractValidator {
@@ -13,15 +22,6 @@ public class SwedishSocialSecurityNumberValidator extends AbstractValidator {
     }
 
     /**
-     * Validation of SwedishSocialSecurityNumbers
-     * <ol>
-     * <li>Check that the input string matches the pattern for security
-     * numbers</li>
-     * <li>If it is a pattern match, validate the luhn number (check the last
-     * digit). If the input string contains more then 10 <i>digits</i>, remove
-     * the first two since these are not validated. Also remove the optional
-     * hyphen ("-").</li>
-     * </ol>
      *
      * @return
      */

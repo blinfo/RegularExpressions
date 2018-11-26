@@ -5,6 +5,13 @@ import java.util.List;
 
 /**
  *
+ * Validate the Swedish licence plate number.
+ * <ol>
+ * <li>Check that the input string matches the pattern</li>
+ * <li>If it is a pattern match, check that the letter combination is not one of
+ * the blocked combinations.</li>
+ * </ol>
+ *
  * @author hl
  */
 public class LicenceNumberValidator extends AbstractValidator {
@@ -18,8 +25,8 @@ public class LicenceNumberValidator extends AbstractValidator {
      *
      *
      */
-    public static final List<String> BLOCKED_LETTER_COMBINATIONS = Arrays.asList("APA", 
-            "ARG", "ASS", "BAJ", "BSS", "CUC", "CUK", "DUM", "ETA", "ETT", "FAG", "FAN", 
+    public static final List<String> BLOCKED_LETTER_COMBINATIONS = Arrays.asList("APA",
+            "ARG", "ASS", "BAJ", "BSS", "CUC", "CUK", "DUM", "ETA", "ETT", "FAG", "FAN",
             "FEG", "FEL", "FEM", "FES", "FET", "FNL", "FUC", "FUK", "FUL", "GAM", "GAY",
             "GEJ", "GEY", "GHB", "GUD", "GYN", "HAT", "HBT", "HKH", "HOR", "HOT", "KGB",
             "KKK", "KUC", "KUF", "KUG", "KUK", "KYK", "LAM", "LAT", "LEM", "LOJ", "LSD",
@@ -33,16 +40,6 @@ public class LicenceNumberValidator extends AbstractValidator {
         super(input, REG_EXP);
     }
 
-    /**
-     * Validate the Swedish licence plate number
-     * <ol>
-     * <li>Check that the input string matches the pattern</li>
-     * <li>If it is a pattern match, check that the letter combination is not
-     * one of the blocked combinations.</li>
-     * </ol>
-     *
-     * @return
-     */
     @Override
     public Result validate() {
         boolean valid = input.matches(regExp) ? isValid() : false;

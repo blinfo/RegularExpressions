@@ -24,6 +24,5 @@ public interface Validator {
         public String toString() {
             return "Result: \"" + input + "\" - \"" + regExp + "\" - match = " + result.toString();
         }
-
     }
 }

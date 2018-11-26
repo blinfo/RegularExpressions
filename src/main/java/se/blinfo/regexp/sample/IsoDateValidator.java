@@ -5,6 +5,11 @@ import java.util.regex.Pattern;
 
 /**
  *
+ * This class validates an ISO 8601 date string.
+ * <p>
+ * If the input string follows the valid pattern a further validation is done to
+ * see if the number of days for each month is within range.
+ *
  * @author hl
  */
 public class IsoDateValidator extends AbstractValidator {
@@ -22,7 +27,7 @@ public class IsoDateValidator extends AbstractValidator {
         boolean valid = false;
         Matcher matcher = pattern.matcher(input);
         if (matcher.matches()) {
-            // Read the input again.
+            // Reset matcher after check if match
             matcher.reset();
             if (matcher.find()) {
                 Integer year = Integer.parseInt(matcher.group(1));
