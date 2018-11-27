@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Regular Expressions</title>
+        <style media="screen">
+            dl {
+                width: 70%;
+                overflow: hidden;
+                padding: 0;
+                margin: 0 3%;
+            }
+            dt {
+                float: left;
+                width: 14%;
+                padding: 0;
+                margin: 0;
+                font-family: monospace;
+                font-size: 15px;
+            }
+            dd {
+                float: left;
+                padding: 0;
+                padding-left: 10px;
+                width: 85%;
+                margin: 0
+            }
+            code {
+                background: #eee;
+                display: inline-block;
+                padding: 0 5px;
+                font-size: 15px;
+            }
+            q {
+                font-style: italic;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Regular Expressions</h1>
+        <h2>Start</h2>
+        <dl>
+            <dt>e</dt>
+            <dd>The character (or letter) "e".</dd>
+            <dt>ussare</dt>
+            <dd>The character sequence (string) "ussare".</dd>
+            <dt>*</dt>
+            <dd>Matches the previous character or group zero or more times.</dd>
+            <dt>+</dt>
+            <dd>Matches the previous character or group one or more times.</dd>
+            <dt>?</dt>
+            <dd>Matches the previous character or group zero or one time.</dd>
+            <dt>|</dt>
+            <dd>Use between characters or groups to mean <em>a or b</em>: 
+                <code>a|b</code>.</dd>
+            <dt>.</dt>
+            <dd>Matches any character.</dd>
+            <dt>\</dt>
+            <dd>Escape for special characters. you will have to escap the 
+                backslash with another one, <code>\\</code> to represent a 
+                single backslash, and in Java and other programming languages, 
+                to match "c:\files\temp" you will have to write 
+                <code>c:\\\\files\\\\temp</code>. Four backslashes to match a 
+                single one.</dd>
+        </dl>
+        <h2>Character classes</h2>
+        <h3>Pre-defined character classes</h3>
+        <p>
+            A few character classes have "short cuts" to simplify usage:
+        </p>
+        <dl>
+            <dt>\d</dt>
+            <dd>A single digit (0 - 9).</dd>
+            <dt>\D</dt>
+            <dd>A single non digit (anything but 0 - 9).</dd>
+            <dt>\s</dt>
+            <dd>A single white space character (space, carriage return/new line, 
+                tab or form feed).</dd>
+            <dt>\S</dt>
+            <dd>A single non white space character.</dd>
+            <dt>\w</dt>
+            <dd>Any alphanumeric character including underscore.</dd>
+            <dt>\W</dt>
+            <dd>Any non alphanumeric character including underscore.</dd>
+        </dl>
+        <h3>Defining a character class</h3>
+        <p>Defining your own character classes.</p>
+        <dl>
+            <dt>[]</dt>
+            <dd>Used to create a character class: <code>[a-cA-C]</code> letters 
+                a, b and c in both lower and upper case.</dd>
+            <dt>[ABC123]</dt>
+            <dd>Upper case letters A - B or digits 1 - 3.</dd>
+            <dt>[\dA-F]</dt>
+            <dd>Upper case letters A - F or any digit (hexadecimal).</dd>
+            <dt>[^qwerty]</dt>
+            <dd>Not the lower case letters q, w, e, r, t or y.</dd>
+            <dt>gr[ae]y</dt>
+            <dd>The word grey spelled with a or e</dd>
+        </dl>
+        <h3>Specify number of characters or groups (quantifiers)</h3>
+        <dl>
+            <dt>{n}</dt>
+            <dd>Exactly <code>n</code> number of occurrances: <code>A{3}</code> 
+                matches "AAA", <code>[123]{2}</code> matches any combination of 
+                two of the numbers 1 2 and 3: "11", "12", "13", "21" etc.</dd>
+            <dt>{n,m}</dt>
+            <dd>Matches n through m number of occurrences: <code>A{2,3}</code> 
+                matches "AA" and "AAA", <code>[123]{1,3}</code> matches any combination of 
+                one through three of the numbers 1 2 and 3: "1", "12", "313", "22" etc.</dd>
+            <dt>{n,}</dt>
+            <dd>N or more: <code>L{3,}</code> matches "LLL", "LLLL", "LLLLLLLL" etc.</dd>
+        </dl>
+        <h3>Special characters</h3>
+        <dl>
+            <dt>\n</dt>
+            <dd>Line feed</dd>
+            <dt>\r</dt>
+            <dd>Carriage return</dd>
+            <dt>\t</dt>
+            <dd>Tab</dd>
+            <dt>\0</dt>
+            <dd>NULL</dd>
+            <dt>\f</dt>
+            <dd>Form feed</dd>
+            <dt>\v</dt>
+            <dd>Vertical tab</dd>
+        </dl>
+        <h3>Groups</h3>
+        <dl>
+            <dt>(x)</dt>
+            <dd>Match "x". This is a capturing group, so you can get the data 
+                from this one to process further: 
+                <code>([ABC]{3}) ([123]{})</code> matches a string with three
+                upper case letters A-C, a space and three digits 1-3: "CCA 113", 
+                "ACB 221" etc. The first group will contain the letters and the 
+                second the digits.</dd>
+            <dt>(?:x)</dt>
+            <dd>Match "x". This is a non capturing group.</dd>
+        </dl>
+        <h2>Links:</h2>
+        <ul>
+            <li><a href="https://www.regular-expressions.info/">https://www.regular-expressions.info/</a> 
+                - Regular-Expressions.info. Everything about regular expressions.<br>
+                <q>At Regular-Expressions.info you will find a wide range of in-depth information about a powerful search pattern language called regular expressions.</q></li>
+            <li><a href="https://regexr.com/">https://regexr.com/</a>
+                - Test and learn about regular expressions.<br>
+                <q>Regular expression tester with syntax highlighting, PHP / PCRE & JS Support, contextual help, cheat sheet, reference, and searchable community patterns.</q></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions</a> 
+                - Regular expressions in javascript on Microsofts developer site.<br>
+                <q>Regular expressions are patterns used to match character combinations in strings.</q></li>
+            <li><a href="https://javascript.info/regular-expressions">https://javascript.info/regular-expressions</a>
+                - More on regular expressions in javascript.<br>
+                <q>Regular expressions is a powerful way of doing search and replace in strings. Patterns and flags - Methods of RegExp and String - Character classes - Escaping, ...</q></li>
+            <li><a href="https://docs.oracle.com/javase/tutorial/essential/regex/">https://docs.oracle.com/javase/tutorial/essential/regex/</a>
+                - Regular expressions and Java.<br>
+                <q>This lesson explains how to use the java.util.regex API for pattern matching with regular expressions.</q>
+            </li>
+        </ul>
+    </body>
+</html>

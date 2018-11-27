@@ -31,7 +31,7 @@ public class PasswordValidator extends AbstractValidator {
 
     public static void main(String[] args) {
         System.out.println("The following should validate to \"true\"");
-        List<String> validInput = Arrays.asList("cå?98UTÆ¥œRZ9", "tv*1ÖX€l4", "qz%51Y@ltP8");
+        List<String> validInput = Arrays.asList("cå?98UTÆ¥œRZ9", "tv*1ÖX-l4", "qz%51Y@ltP8", "yh$798Å+cc0");
         validInput.forEach(s -> System.out.println(new PasswordValidator(s).validate()));
         System.out.println("\nThe following should validate to \"false\"");
         List<String> invalidInput = Arrays.asList("password", "admin", "myPassword", "cé?98UTÆ¥œRZ9");
