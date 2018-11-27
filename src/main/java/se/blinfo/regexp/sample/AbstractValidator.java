@@ -11,6 +11,7 @@ public abstract class AbstractValidator implements Validator {
 
     protected final String input;
     protected final String regExp;
+    protected Matcher matcher;
 
     public AbstractValidator(String input, String regExp) {
         this.input = input;
@@ -22,7 +23,7 @@ public abstract class AbstractValidator implements Validator {
         if (regExp == null || regExp.isEmpty()) {
             throw new IllegalArgumentException("The regular expression must not be null or empty string!");
         }
-        Matcher matcher = Pattern.compile(regExp).matcher(input);
+        matcher = Pattern.compile(regExp).matcher(input);
         return new Result(input, regExp, matcher.matches());
     }
 }

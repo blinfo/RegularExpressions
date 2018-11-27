@@ -12,17 +12,29 @@ public interface Validator {
 
         private final String input;
         private final String regExp;
-        private final Boolean result;
+        private final Boolean matches;
 
-        public Result(String input, String regExp, Boolean result) {
+        public Result(String input, String regExp, Boolean matches) {
             this.input = input;
             this.regExp = regExp;
-            this.result = result;
+            this.matches = matches;
+        }
+
+        public String getInput() {
+            return input;
+        }
+
+        public String getRegExp() {
+            return regExp;
+        }
+
+        public Boolean isMatch() {
+            return matches;
         }
 
         @Override
         public String toString() {
-            return "Result: \"" + input + "\" - \"" + regExp + "\" - match = " + result.toString();
+            return "Result: \"" + input + "\" - \"" + regExp + "\" - match = " + matches.toString();
         }
     }
 }
