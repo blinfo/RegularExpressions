@@ -1,8 +1,8 @@
 <p>
 <i>This file is auto generated. Any changes made to it will disappear with next build.</i>
-/p>
+</p>
 <p>
-<a href="/blinfo/RegularExpressions/wiki"><b>Wiki page</b></a>
+<a href="https://github.com/blinfo/RegularExpressions/wiki"><b>Wiki page</b></a>
 </p>
 <a name="toc"> </a>
 # Regular Expressions 
