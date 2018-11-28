@@ -31,10 +31,10 @@ import java.util.stream.IntStream;
  */
 public class ImprovedRolePlayingDieParser {
 
-    private static final String REG_EXP = ".*(\\d+)[dDtT](\\d+)(([-+])(\\d*))?.*";
+    private static final String REG_EXP = ".*(\\d+)[dDtT](\\d+)(?:([-+])(\\d+))?.*";
     private static final Pattern PATTERN = Pattern.compile(REG_EXP);
     private static final int NUMBER_OF_DICE = 1,
-            DIE_MAX = 2, OPERATOR = 4, MODIFIER = 5;
+            DIE_MAX = 2, OPERATOR = 3, MODIFIER = 4;
 
     public static Integer roll(String dieString) {
         if (dieString == null) {
@@ -46,6 +46,9 @@ public class ImprovedRolePlayingDieParser {
         }
         matcher.reset();
         if (matcher.find()) {
+//            for (int i = 0; i < matcher.groupCount(); i++) {
+//                System.out.println(matcher.group(i + 1));
+//            }
             return IntStream.range(0, Integer.parseInt(matcher.group(NUMBER_OF_DICE)))
                     .map(i -> rollDie(matcher.group(DIE_MAX)))
                     .reduce((a, b) -> a + b).orElse(0) + getModifierValue(matcher.group(OPERATOR), matcher.group(MODIFIER));

@@ -14,19 +14,16 @@ import java.util.regex.Pattern;
  */
 public class IsoDateValidator extends AbstractValidator {
 
-    private static final String REG_EXP = "^(1[89]\\d{2}|20\\d{2})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$";
-    private final Pattern pattern;
+    private static final String REG_EXP = "(1[89]\\d{2}|20\\d{2})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])";
 
     public IsoDateValidator(String input) {
         super(input, REG_EXP);
-        pattern = Pattern.compile(regExp);
     }
 
     @Override
     public Result validate() {
         boolean valid = false;
-        Matcher matcher = pattern.matcher(input);
-        if (matcher.matches()) {
+        if (super.validate().isMatch()) {
             // Reset matcher after check if match
             matcher.reset();
             if (matcher.find()) {
@@ -66,6 +63,8 @@ public class IsoDateValidator extends AbstractValidator {
 
     public static void main(String[] args) {
         System.out.println(new IsoDateValidator("1987-11-30").validate());
+        System.out.println(new IsoDateValidator("1987-02-29").validate());
+        System.out.println(new IsoDateValidator("1988-02-29").validate());
     }
 
 }

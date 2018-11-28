@@ -35,7 +35,8 @@ public class RegExpMarkdown {
     }
 
     public String getMarkDown(boolean includeAlternative) {
-        StringBuilder builder = new StringBuilder("<a name=\"toc\"> </a>\n# Regular Expressions \n\n");
+        StringBuilder builder = new StringBuilder("_This file is auto generated. Any changes made to it will disappear with next build._  \n\n");
+        builder.append("<a name=\"toc\"> </a>\n# Regular Expressions \n\n");
         provider.getExpressions().forEach(re -> {
             builder.append("  * <a href=\"#").append(re.getTitle().toLowerCase().replaceAll(" ", "-")).append("\">")
                     .append(re.getTitle()).append("</a>\n");

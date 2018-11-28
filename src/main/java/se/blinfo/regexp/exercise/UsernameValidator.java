@@ -26,7 +26,7 @@ public class UsernameValidator extends AbstractValidator {
         List<String> validInput = Arrays.asList("snisse", "ottoman", "superman", "bettan");
         validInput.forEach(s -> System.out.println(new UsernameValidator(s).validate()));
         System.out.println("\nThe following should validate to \"false\"");
-        List<String> invalidInput = Arrays.asList("SNISSE", "root", "myUserName", "hln142");
+        List<String> invalidInput = Arrays.asList("SNISSE", "root", "myUserName", "hln142", "påsberg");
         invalidInput.forEach(s -> System.out.println(new UsernameValidator(s).validate()));
     }
 

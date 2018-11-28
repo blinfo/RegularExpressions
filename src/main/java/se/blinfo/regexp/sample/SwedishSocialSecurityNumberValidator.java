@@ -51,10 +51,6 @@ public class SwedishSocialSecurityNumberValidator extends AbstractValidator {
     }
 
     public static void main(String[] args) {
-        System.out.println(new SwedishSocialSecurityNumberValidator("19641002-8515").validate());
-        System.out.println(new SwedishSocialSecurityNumberValidator("196410028515").validate());
-        System.out.println(new SwedishSocialSecurityNumberValidator("641002-8515").validate());
-        System.out.println(new SwedishSocialSecurityNumberValidator("6410028515").validate());
         System.out.println(new SwedishSocialSecurityNumberValidator("940224-5626").validate());
     }
 }

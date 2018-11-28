@@ -4,6 +4,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 /**
  *
+ * E. g. 3D6+3
+ * 
  * @author hl
  */
 public class RolePlayingDieParser {
