@@ -16,6 +16,6 @@ public class RegularExpressions {
     public static void main(String[] args) {
         new RegExpValidate().run();
         System.out.println("Updated Readme:");
-        new RegExpMarkdown(new File("/home/hl/NetBeansProjects/RegularExpressions/README.md")).write();
+        new RegExpMarkdown(new File("README.md")).write();
     }
 }
