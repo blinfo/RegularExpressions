@@ -2,7 +2,7 @@
 <i>This file is auto generated. Any changes made to it will disappear with next build.</i>
 /p>
 <p>
-<a href="./wiki"><b>Wiki page</b></a>
+<a href="/blinfo/RegularExpressions/wiki"><b>Wiki page</b></a>
 </p>
 <a name="toc"> </a>
 # Regular Expressions 
