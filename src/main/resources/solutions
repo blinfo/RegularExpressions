@@ -1,0 +1,110 @@
+Suggested solutions to the exercises;
+
+UsernameValidator:      [a-z]{6,9}
+
+BankGiroValidator:      \d{3,4}-\d{4}
+
+PlusGiroValidator:      \d{6,7}-\d
+
+VatNumberValidator:     SE[ ]?\d{10}01
+
+UUIDValidator:          [\da-f]{8}-(?:[\da-f]{4}-){3}[\da-f]{12}
+
+HtmlLinkParser:         .*<a href="(.*)">(.*)</a>.*
+
+    public HtmlLink getLink() {
+        Matcher matcher = Pattern.compile(REGEXP).matcher(input);
+        if (!matcher.matches()) {
+            return null;
+        }
+        matcher.reset();
+        if (matcher.find()) {
+            return new HtmlLink(matcher.group(1), matcher.group(2));
+        }
+        return null;
+    }
+
+
+
+VersionNumberValidator: (\d+)\.(\d+)(?:\.(\d+))?
+
+    public Version getVersion() {
+        if (!validate().isMatch()) {
+            return null;
+        }
+        int major = 1, minor = 2, bugfix = 3;
+        matcher.reset();
+        if (matcher.find()) {
+            return new Version(matcher.group(major), matcher.group(minor), matcher.group(bugfix));
+        }
+        return null;
+    }
+
+PasswordValidator:      [a-zåäöæøœ]{2}[*+\-?@£$€¥!#¤%&]\d{1,3}[A-ZÅÄÖÆØŒ]{1,3}[*+\-?@£$€¥!#¤%&][A-ZÅÄÖÆØŒa-zåäöæøœ]{1,3}\d
+
+PhoneNumberValidator:   ((\+[1-9]\d{0,2}) ([1-9]\d{0,2})|0[1-9]\d{0,2}) ([1-9]\d{4,7})
+
+
+    public Optional<PhoneNumber> getPhoneNumber() {
+        if (super.validate().isMatch()) {
+            if (matcher.group(3) == null) {
+                return Optional.of(new PhoneNumber(null, matcher.group(1), matcher.group(4)));
+            } else {
+                return Optional.of(new PhoneNumber(matcher.group(2), matcher.group(3), matcher.group(4)));
+            }
+        }
+        return Optional.empty();
+    }
+
+    public class PhoneNumber {
+
+        private final String countryCode;
+        private final String regionCode;
+        private final String number;
+        public static final String DEFAULT_COUNTRY_CODE = "+46";
+
+        public PhoneNumber(String countryCode, String regionCode, String number) {
+            this.countryCode = countryCode != null ? countryCode : DEFAULT_COUNTRY_CODE;
+            this.regionCode = regionCode == null ? "" : regionCode.startsWith("0") ? regionCode.substring(1) : regionCode;
+            this.number = number;
+        }
+
+        public String getCountryCode() {
+            return countryCode;
+        }
+
+        public String getRegionCode() {
+            return regionCode;
+        }
+
+        public String getNumber() {
+            return number;
+        }
+
+        @Override
+        public String toString() {
+            return getCountryCode() + " " + getRegionCode() + " " + getNumber();
+        }
+
+    }
+
+
+
+
+NameValidator:          (([A-ZÅÄÖ][a-zåäöéæ]+)([- ]([A-ZÅÄÖ][a-zåäöéæ]+))?), (([A-ZÅÄÖ][a-zåäöéæ]+)([- ]([A-ZÅÄÖ][a-zåäöéæ]+)){0,3})([ ](([A-ZÅÄÖ]\.)([- ]([A-ZÅÄÖ]\.))*))?
+    (groups 1, 5 & 10)
+
+    public Name getName() {
+        int familyName = 1;
+        int givenName = 5;
+        int initials = 10;
+        Matcher matcher = Pattern.compile(regExp).matcher(input);
+        if (!matcher.matches()) {
+            return null;
+        }
+        matcher.reset();
+        if (matcher.find()) {
+            return new Name(matcher.group(familyName), matcher.group(givenName), matcher.group(initials));
+        }
+        return null;
+    }
