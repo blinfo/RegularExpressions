@@ -1,5 +1,9 @@
-_This file is auto generated. Any changes made to it will disappear with next build._  
-
+<p>
+<i>This file is auto generated. Any changes made to it will disappear with next build.</i>
+/p>
+<p>
+<a href="./wiki"><b>Wiki page</b></a>
+</p>
 <a name="toc"> </a>
 # Regular Expressions 
 
