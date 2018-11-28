@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class LicenceNumberValidator extends AbstractValidator {
 
-    private static final String REG_EXP = "[A-HJ-PR-UW-Z]{3} {0,1}(0\\d[A-HJ-PR-UW-Z1-9]|[1-9]\\d[A-HJ-PR-UW-Z0-9])";
+    private static final String REG_EXP = "[A-HJ-PR-UW-Z]{3} ?(0\\d[A-HJ-PR-UW-Z1-9]|[1-9]\\d[A-HJ-PR-UW-Z0-9])";
     /**
      * Letter combinations removed from the licence plate list.
      * <p>
@@ -53,11 +53,13 @@ public class LicenceNumberValidator extends AbstractValidator {
     public static void main(String[] args) {
         String plate = "HEX 408";
         System.out.println(new LicenceNumberValidator(plate).validate());
-        plate = "APA123";
-        System.out.println(new LicenceNumberValidator(plate).validate());
         plate = "CPU12Y";
         System.out.println(new LicenceNumberValidator(plate).validate());
+        plate = "APB 123";
+        System.out.println(new LicenceNumberValidator(plate).validate());
         plate = "APB123";
+        System.out.println(new LicenceNumberValidator(plate).validate());
+        plate = "APA123";
         System.out.println(new LicenceNumberValidator(plate).validate());
     }
 }

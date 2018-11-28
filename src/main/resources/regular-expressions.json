@@ -172,7 +172,7 @@
             "title": "New line",
             "description": "Matches new line both in windows and unix-like os (mac). Windows uses CRLF (\\r\\n) while other uses only LF (\\n). The strings that matches below are \\n and \\r\\n, the non-matching strings are \\n\\r and \\t.",
             "regexp": "\\R",
-            "alternativeRegexp": "\\r{0,1}\\n",
+            "alternativeRegexp": "\\r?\\n",
             "matches": ["\n", "\r\n"],
             "nonMatches": ["\n\r", "\t"]
         },
@@ -214,14 +214,14 @@
         {
             "title": "Swedish social security number - Initial attempt",
             "description": "Simple matching of the Swedish social security number. six or eight digits, an optional hyphen and four digits. This expressions only checks for the right number or digits, not wether they are correct.",
-            "regexp": "(\\d{2}){0,1}\\d{6}-{0,1}\\d{4}",
+            "regexp": "(\\d{2})?\\d{6}-?\\d{4}",
             "matches": ["254789-1234", "987741008475", "12345678-0987", "8745632104"],
             "nonMatches": ["1234567-9781", "1920-12-11-5789", "647189-987", "87456321"]
         },
         {
             "title": "Swedish social security number - Improved",
             "description": "A somewhat better matching of the Swedish social security number. six or eight digits, an optional hyphen and four digits. Note that the first four non-matching numbers matched the initial attempt. To make a validation of the last digit (control digit) you need to use more than a regexp",
-            "regexp": "(19|20){0,1}\\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-2]\\d|3[0-1])-{0,1}\\d{4}",
+            "regexp": "(19|20)?\\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-2]\\d|3[0-1])-?\\d{4}",
             "matches": ["19721011-6534", "7811309574", "120226-0987", "19991231-9999"],
             "nonMatches": ["254789-1234", "987741008475", "12345678-0987", "8745632104", "1234567-9781", "1920-12-11-5789", "647189-987", "87456321", "20040832-1541"]
         },
@@ -235,8 +235,8 @@
         {
             "title": "Swedish car number",
             "description": "Matches the Swedish licence plate number. Three upper case letters A-H, J-P, R-U or W-Z followed by 001 - 999 or 00 - 99 plus upper case letter A-H, J-P, R-U or W-Z. Some letter combinations are removed, like KKK, PKK and a few others, but this expression does not handle these numbers.",
-            "regexp": "[A-HJ-PR-UW-Z]{3} {0,1}(0\\d[A-HJ-PR-UW-Z1-9]|[1-9]\\d[A-HJ-PR-UW-Z0-9])",
-            "alternativeRegexp": "[A-Z&&[^IQV]]{3} {0,1}(0\\d[A-Z1-9&&[^IQV]]|[1-9]\\d[A-Z0-9&&[^IQV]])",
+            "regexp": "[A-HJ-PR-UW-Z]{3} ?(0\\d[A-HJ-PR-UW-Z1-9]|[1-9]\\d[A-HJ-PR-UW-Z0-9])",
+            "alternativeRegexp": "[A-Z&&[^IQV]]{3} ?(0\\d[A-Z1-9&&[^IQV]]|[1-9]\\d[A-Z0-9&&[^IQV]])",
             "matches": ["ABC123", "PKJ 001", "DEF 456", "HJK 94A", "AAA 00W"],
             "nonMatches": ["abc123", "CDE 000", "IIV 453", "DEF 4567", "QHI 987", "BCD 12I"]
         }

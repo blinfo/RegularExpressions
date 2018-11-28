@@ -13,7 +13,9 @@ import java.util.stream.Stream;
 /**
  * 
  * Search for lines containing (or not containing) one and/or more words.
- *
+ * <p>
+ * Find lines that matches the regexp and return them as a list of strings.
+ * 
  * @author hl
  */
 public class TextLineSearch {

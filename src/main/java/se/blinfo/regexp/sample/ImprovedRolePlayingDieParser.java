@@ -7,13 +7,13 @@ import java.util.stream.IntStream;
 
 /**
  *
- * Validate a string to se if it is a valid die combination, then perform the
- * roll.
+ * Validate a string to se if it contains a valid die combination, then perform
+ * the roll.
  * <p>
  * The valid combination is:
  * <ol>
  * <li>number of dice</li>
- * <li>letter D (or T) for "Dice" (or "Tärning)</li>
+ * <li>lower or upper case letter D (or T) for "Dice" (or "Tärning)</li>
  * <li>number of sides to the die</li>
  * <li>optional "+" or "-" for adjustments</li>
  * <li>optional value to add or subtract, depending on the previous
@@ -21,14 +21,17 @@ import java.util.stream.IntStream;
  * </ol>
  * E. g. "3D6+3", "1D10-1" or "4D4"
  * <p>
- * If the input string is valid it is parsed and the roll is performed and
- * returned.
+ * If the input string contains a valid die-string this is extracted, parsed and
+ * the roll is performed and returned.
+ * <p>
+ * If you like, improve this further by limiting the dice to ordinary die sizes
+ * (2, 3, 4, 6, 8, 10, 12, 20 and 100).
  *
  * @author hl
  */
 public class ImprovedRolePlayingDieParser {
 
-    private static final String REG_EXP = "(\\d+)[dDtT](\\d+)(([-+])(\\d*))?";
+    private static final String REG_EXP = ".*(\\d+)[dDtT](\\d+)(([-+])(\\d*))?.*";
     private static final Pattern PATTERN = Pattern.compile(REG_EXP);
     private static final int NUMBER_OF_DICE = 1,
             DIE_MAX = 2, OPERATOR = 4, MODIFIER = 5;
@@ -63,9 +66,10 @@ public class ImprovedRolePlayingDieParser {
         System.out.println(ImprovedRolePlayingDieParser.roll("1D1+1"));
         System.out.println(ImprovedRolePlayingDieParser.roll("1D1-1"));
         System.out.println(ImprovedRolePlayingDieParser.roll("1D1"));
-        System.out.println(ImprovedRolePlayingDieParser.roll("3D10+3"));
-        System.out.println(ImprovedRolePlayingDieParser.roll("3D10*3"));
+        System.out.println(ImprovedRolePlayingDieParser.roll("Roll 3D10+3"));
+        System.out.println(ImprovedRolePlayingDieParser.roll("HP: 3D10*3"));
         System.out.println(ImprovedRolePlayingDieParser.roll("1D10+10"));
+        System.out.println(ImprovedRolePlayingDieParser.roll("Roll 1D100 three times for items from table 14.1"));
         System.out.println(ImprovedRolePlayingDieParser.roll(null));
     }
 }

@@ -16,7 +16,7 @@ package se.blinfo.regexp.sample;
  */
 public class RolePlayingDieValidator extends AbstractValidator {
 
-    private static final String REG_EXP = "\\d+[dDtT]\\d+([-+]?\\d*)?";
+    private static final String REG_EXP = ".*\\d+[dDtT]\\d+([-+]?\\d*)?.*";
 
     public RolePlayingDieValidator(String input) {
         super(input, REG_EXP);
@@ -30,6 +30,6 @@ public class RolePlayingDieValidator extends AbstractValidator {
     public static void main(String[] args) {
         System.out.println(new RolePlayingDieValidator("3D10+3").validate());
         System.out.println(new RolePlayingDieValidator("3D10-3").validate());
-        System.out.println(new RolePlayingDieValidator("3D10").validate());
+        System.out.println(new RolePlayingDieValidator("Roll 3D10 for damage.").validate());
     }
 }

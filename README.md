@@ -875,7 +875,7 @@ With alternative writing:
 
 **Expression**: `\\R`
 
-**Alternative**: `\\r{0,1}\\n`
+**Alternative**: `\\r?\\n`
 
 Matches new line both in windows and unix-like os (mac). Windows uses CRLF (\\r\\n) while other uses only LF (\\n). The strings that matches below are \\n and \\r\\n, the non-matching strings are \\n\\r and \\t.
 
@@ -1055,7 +1055,7 @@ The same <a href="#date---a-fairly-good-match">as above</a> but only for ISO-dat
 <a name="swedish-social-security-number---initial-attempt"> </a>
 ### Swedish social security number - Initial attempt
 
-**Expression**: `(\\d{2}){0,1}\\d{6}-{0,1}\\d{4}`
+**Expression**: `(\\d{2})?\\d{6}-?\\d{4}`
 
 Simple matching of the Swedish social security number. six or eight digits, an optional hyphen and four digits. This expressions only checks for the right number or digits, not wether they are correct.
 
@@ -1082,7 +1082,7 @@ Simple matching of the Swedish social security number. six or eight digits, an o
 <a name="swedish-social-security-number---improved"> </a>
 ### Swedish social security number - Improved
 
-**Expression**: `(19|20){0,1}\\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-2]\\d|3[0-1])-{0,1}\\d{4}`
+**Expression**: `(19|20)?\\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-2]\\d|3[0-1])-?\\d{4}`
 
 A somewhat better matching of the Swedish social security number. six or eight digits, an optional hyphen and four digits. Note that the first four non-matching numbers matched the initial attempt. To make a validation of the last digit (control digit) you need to use more than a regexp
 
@@ -1145,9 +1145,9 @@ Matches email address pattern.
 <a name="swedish-car-number"> </a>
 ### Swedish car number
 
-**Expression**: `[A-HJ-PR-UW-Z]{3} {0,1}(0\\d[A-HJ-PR-UW-Z1-9]|[1-9]\\d[A-HJ-PR-UW-Z0-9])`
+**Expression**: `[A-HJ-PR-UW-Z]{3} ?(0\\d[A-HJ-PR-UW-Z1-9]|[1-9]\\d[A-HJ-PR-UW-Z0-9])`
 
-**Alternative**: `[A-Z&&[^IQV]]{3} {0,1}(0\\d[A-Z1-9&&[^IQV]]|[1-9]\\d[A-Z0-9&&[^IQV]])`
+**Alternative**: `[A-Z&&[^IQV]]{3} ?(0\\d[A-Z1-9&&[^IQV]]|[1-9]\\d[A-Z0-9&&[^IQV]])`
 
 Matches the Swedish licence plate number. Three upper case letters A-H, J-P, R-U or W-Z followed by 001 - 999 or 00 - 99 plus upper case letter A-H, J-P, R-U or W-Z. Some letter combinations are removed, like KKK, PKK and a few others, but this expression does not handle these numbers.
 

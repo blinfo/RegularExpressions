@@ -15,7 +15,7 @@ package se.blinfo.regexp.sample;
  */
 public class SwedishSocialSecurityNumberValidator extends AbstractValidator {
 
-    private static final String REG_EXP = "(19|20){0,1}\\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-2]\\d|3[0-1])-{0,1}\\d{4}";
+    private static final String REG_EXP = "(19|20)?\\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-2]\\d|3[0-1])[- ]?\\d{4}";
 
     public SwedishSocialSecurityNumberValidator(String input) {
         super(input, REG_EXP);
