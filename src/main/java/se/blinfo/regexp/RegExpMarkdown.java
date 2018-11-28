@@ -35,7 +35,7 @@ public class RegExpMarkdown {
     }
 
     public String getMarkDown(boolean includeAlternative) {
-        StringBuilder builder = new StringBuilder("<a name=\"top\"> </a>\n# Regular Expressions \n\n");
+        StringBuilder builder = new StringBuilder("<a name=\"toc\"> </a>\n# Regular Expressions \n\n");
         provider.getExpressions().forEach(re -> {
             builder.append("  * <a href=\"#").append(re.getTitle().toLowerCase().replaceAll(" ", "-")).append("\">")
                     .append(re.getTitle()).append("</a>\n");
@@ -90,7 +90,7 @@ public class RegExpMarkdown {
                             .append("\t\"").append(string).append("\"\n");
                 });
             }
-            builder.append("\n\n<a href=\"#top\">^</a>").append("\n\n");
+            builder.append("\n\n<a href=\"#toc\">^</a>").append("\n\n");
         });
         return builder.toString();
     }

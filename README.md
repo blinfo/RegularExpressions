@@ -1,4 +1,4 @@
-<a name="top"> </a>
+<a name="toc"> </a>
 # Regular Expressions 
 
   * <a href="#single-digit">Single digit</a>
@@ -73,7 +73,7 @@ With alternative writing:
   * false	"11"
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -115,7 +115,7 @@ With alternative writing:
   * false	"pt"
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -138,7 +138,7 @@ Matches exactly one dot (.). The dot is a meta character and must be escaped.
 
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -174,7 +174,7 @@ With alternative writing:
   * false	"--"
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -214,7 +214,7 @@ With alternative writing:
   * false	"@"
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -254,7 +254,7 @@ With alternative writing:
   * false	"957"
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -294,7 +294,7 @@ With alternative writing:
   * false	"@"
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -338,7 +338,7 @@ With alternative writing:
   * false	""
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -380,7 +380,7 @@ With alternative writing:
   * false	"a42"
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -420,7 +420,7 @@ With alternative writing:
   * false	"text"
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -464,7 +464,7 @@ With alternative writing:
   * false	"h"
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -512,7 +512,7 @@ With alternative writing:
   * false	""
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -541,7 +541,7 @@ Matches number zero or a negative or positive non zero of one or more digits.
 
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -572,7 +572,7 @@ Matches number zero or a negative or positive float (non zero) with required zer
 
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -606,7 +606,7 @@ Matches negative or positive float or integer with optional zero before floating
 
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -652,7 +652,7 @@ With alternative writing:
   * false	"ä"
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -679,7 +679,7 @@ Matches one Swedish letter.
 
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -707,7 +707,7 @@ Matches digit, lower case letters a through f, upper case letters Q, X or Z and 
 
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -753,7 +753,7 @@ With alternative writing:
   * false	"O"
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -785,7 +785,7 @@ Matches any character that is not a new line. The non matching characters in the
 
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -812,7 +812,7 @@ Matches whitespace characters, like new line, carriage return, tab and space. Th
 
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -866,7 +866,7 @@ With alternative writing:
   * false	""
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -908,7 +908,7 @@ With alternative writing:
   * false	"	"
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -938,7 +938,7 @@ Matches whitespace characters, like new line, carriage return, tab and space and
 
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -966,7 +966,7 @@ Matches the typical role playing die pattern: 3D6+2, 1D3-1, 4D8 and the Swedish 
 
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -994,7 +994,7 @@ Almost the same as <a href="#role-playing-die">the previous</a>, but with groupi
 
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -1021,7 +1021,7 @@ A fairly good matching of dates. It does not handel the number of days for each 
 
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -1048,7 +1048,7 @@ The same <a href="#date---a-fairly-good-match">as above</a> but only for ISO-dat
 
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -1075,7 +1075,7 @@ Simple matching of the Swedish social security number. six or eight digits, an o
 
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -1107,7 +1107,7 @@ A somewhat better matching of the Swedish social security number. six or eight d
 
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -1138,7 +1138,7 @@ Matches email address pattern.
 
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
 ---
 
@@ -1188,5 +1188,5 @@ With alternative writing:
   * false	"BCD 12I"
 
 
-<a href="#top">^</a>
+<a href="#toc">^</a>
 
