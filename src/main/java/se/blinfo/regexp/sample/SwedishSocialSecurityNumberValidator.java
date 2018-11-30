@@ -56,16 +56,16 @@ public class SwedishSocialSecurityNumberValidator extends AbstractValidator {
             return false;
         }
         String luhnNumber = matcher.group(YEAR) + matcher.group(MONTH) + matcher.group(DAY) + matcher.group(NUMBER);
-        int a = 1;
+        int multiplier = 1;
         int sum = 0;
         int term;
         for (int i = luhnNumber.length() - 1; i >= 0; i--) {
-            term = Character.digit(luhnNumber.charAt(i), 10) * a;
+            term = Character.digit(luhnNumber.charAt(i), 10) * multiplier;
             if (term > 9) {
                 term -= 9;
             }
             sum += term;
-            a = 3 - a;
+            multiplier = 3 - multiplier;
         }
         return sum % 10 == 0;
     }
@@ -99,11 +99,8 @@ public class SwedishSocialSecurityNumberValidator extends AbstractValidator {
                 return day < 31;
             case 2:
                 int modulo100 = year % 100;
-                if ((modulo100 == 0 && year % 400 == 0) || (modulo100 != 0 && year % 4 == 0)) {
-                    return day < 30;
-                } else {
-                    return day < 29;
-                }
+                return ((modulo100 == 0 && year % 400 == 0) || (modulo100 != 0 && year % 4 == 0)) 
+                        ? day < 30 : day < 29;
             default:
                 return false;
         }

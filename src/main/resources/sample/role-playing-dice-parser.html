@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Role Playing Dice Parser</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="role-playing-dice-parser.js"></script>
+        <script><!--
+
+            function roll() {
+                var input = document.getElementById('input').value;
+                var result = "Result of <em>" + input + "</em> is <strong>" + RPG.roll(input) + "</strong>";
+                document.getElementById('result').innerHTML = result;
+            }
+--></script>
+        <style>
+            #result {
+                font-style: italic;
+            }
+            #result em, #result strong {
+                font-style: normal;
+                font-family: monospace;
+                font-size: 11pt;
+            }
+            #result strong {
+                font-size: 13pt;
+                display: inline-block;
+                width: 100px;
+                text-align: center;
+                background-color: #eee;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Role Playing Dice Parser</h1>
+        <input id="input" value="3D4+3"/>
+        <button type="button" onClick="roll()">Check</button>
+        <p>
+            Enter string (e. g. "3D4+3") and click the button to get the result.
+        </p>
+        <div id="result"></div>
+    </body>
+</html>
