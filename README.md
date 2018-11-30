@@ -1092,7 +1092,7 @@ Simple matching of the Swedish social security number. six or eight digits, an o
 
 **Alternative**: `((?:19|20)?(\\d{2}))(0[1-9]|1[0-2])(0[1-9]|[1-2]\\d|3[0-1])[- ]?(\\d{4})`
 
-A somewhat better matching of the Swedish social security number. six or eight digits, an optional hyphen and four digits. Note that the first four non-matching numbers matched the initial attempt. To make a validation of the last digit (control digit) you need to use more than a regexp. The alternative expression contains the grouping used in the <a href="./src/main/java/se/blinfo/regexp/sample/SwedishSocialSecurityNumberValidator.java">SwedishSocialSecurityNumberValidator</a>.
+A somewhat better matching of the Swedish social security number. six or eight digits, an optional hyphen and four digits. Note that the first four non-matching numbers matched the initial attempt. To make a validation of the last digit (control digit) you need to use more than a regexp. The alternative expression contains the grouping used in the <a href="./src/main/java/se/blinfo/regexp/sample/SwedishSocialSecurityNumberValidator.java">SwedishSocialSecurityNumberValidator</a> and the javascript <a href="./src/main/resources/sample/swedish-social-security-number-validator.js">swedish-social-security-number-validator.js</a>.
 
   _Matches:_
 

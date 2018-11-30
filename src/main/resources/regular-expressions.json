@@ -220,7 +220,7 @@
         },
         {
             "title": "Swedish social security number - Improved",
-            "description": "A somewhat better matching of the Swedish social security number. six or eight digits, an optional hyphen and four digits. Note that the first four non-matching numbers matched the initial attempt. To make a validation of the last digit (control digit) you need to use more than a regexp. The alternative expression contains the grouping used in the <a href=\"./src/main/java/se/blinfo/regexp/sample/SwedishSocialSecurityNumberValidator.java\">SwedishSocialSecurityNumberValidator</a>.",
+            "description": "A somewhat better matching of the Swedish social security number. six or eight digits, an optional hyphen and four digits. Note that the first four non-matching numbers matched the initial attempt. To make a validation of the last digit (control digit) you need to use more than a regexp. The alternative expression contains the grouping used in the <a href=\"./src/main/java/se/blinfo/regexp/sample/SwedishSocialSecurityNumberValidator.java\">SwedishSocialSecurityNumberValidator</a> and the javascript <a href=\"./src/main/resources/sample/swedish-social-security-number-validator.js\">swedish-social-security-number-validator.js</a>.",
             "regexp": "(?:19|20)?\\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1-2]\\d|3[0-1])-?\\d{4}",
             "alternativeRegexp": "((?:19|20)?(\\d{2}))(0[1-9]|1[0-2])(0[1-9]|[1-2]\\d|3[0-1])[- ]?(\\d{4})",
             "matches": ["19721011-6534", "7811309574", "120226-0987", "19991231-9999"],

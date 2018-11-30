@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Validator for Swedish Social Security Number</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="swedish-social-security-number-validator.js"></script>
+        <script><!--
+
+            function validateInput() {
+                var input = document.getElementById('input').value;
+                var isValid = SSN.validate(input);
+                var result = "Number <em>" + input + "</em> is ";
+                result += (isValid) ? "a valid" : "an invalid";
+                document.getElementById('result').innerHTML = result + " number.";
+            }
+--></script>
+        <style>
+            #result {
+                font-style: italic;
+            }
+            #result em {
+                font-style: normal;
+                font-family: monospace;
+                font-size: 11pt;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Validator for Swedish Social Security Number</h1>
+        <input id="input" value=""/>
+        <button type="button" onClick="validateInput()">Check</button>
+        <p>
+            Enter number to check and click the button.
+        </p>
+        <div id="result"></div>
+    </body>
+</html>
