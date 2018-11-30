@@ -220,8 +220,9 @@
         },
         {
             "title": "Swedish social security number - Improved",
-            "description": "A somewhat better matching of the Swedish social security number. six or eight digits, an optional hyphen and four digits. Note that the first four non-matching numbers matched the initial attempt. To make a validation of the last digit (control digit) you need to use more than a regexp",
-            "regexp": "(19|20)?\\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-2]\\d|3[0-1])-?\\d{4}",
+            "description": "A somewhat better matching of the Swedish social security number. six or eight digits, an optional hyphen and four digits. Note that the first four non-matching numbers matched the initial attempt. To make a validation of the last digit (control digit) you need to use more than a regexp. The alternative expression contains the grouping used in the <a href=\"./src/main/java/se/blinfo/regexp/sample/SwedishSocialSecurityNumberValidator.java\">SwedishSocialSecurityNumberValidator</a>.",
+            "regexp": "(?:19|20)?\\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1-2]\\d|3[0-1])-?\\d{4}",
+            "alternativeRegexp": "((?:19|20)?(\\d{2}))(0[1-9]|1[0-2])(0[1-9]|[1-2]\\d|3[0-1])[- ]?(\\d{4})",
             "matches": ["19721011-6534", "7811309574", "120226-0987", "19991231-9999"],
             "nonMatches": ["254789-1234", "987741008475", "12345678-0987", "8745632104", "1234567-9781", "1920-12-11-5789", "647189-987", "87456321", "20040832-1541"]
         },
@@ -234,7 +235,7 @@
         },
         {
             "title": "Swedish car number",
-            "description": "Matches the Swedish licence plate number. Three upper case letters A-H, J-P, R-U or W-Z followed by 001 - 999 or 00 - 99 plus upper case letter A-H, J-P, R-U or W-Z. Some letter combinations are removed, like KKK, PKK and a few others, but this expression does not handle these numbers.",
+            "description": "Matches the Swedish licence plate number. Three upper case letters A-H, J-P, R-U or W-Z followed by a single space and then 001 - 999 or 00 - 99 plus upper case letter A-H, J-P, R-U or W-Z. Some letter combinations are removed, like KKK, PKK and a few others, but this expression does not handle these numbers.",
             "regexp": "[A-HJ-PR-UW-Z]{3} ?(0\\d[A-HJ-PR-UW-Z1-9]|[1-9]\\d[A-HJ-PR-UW-Z0-9])",
             "alternativeRegexp": "[A-Z&&[^IQV]]{3} ?(0\\d[A-Z1-9&&[^IQV]]|[1-9]\\d[A-Z0-9&&[^IQV]])",
             "matches": ["ABC123", "PKJ 001", "DEF 456", "HJK 94A", "AAA 00W"],

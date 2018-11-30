@@ -1088,9 +1088,11 @@ Simple matching of the Swedish social security number. six or eight digits, an o
 <a name="swedish-social-security-number---improved"> </a>
 ### Swedish social security number - Improved
 
-**Expression**: `(19|20)?\\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-2]\\d|3[0-1])-?\\d{4}`
+**Expression**: `(?:19|20)?\\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1-2]\\d|3[0-1])-?\\d{4}`
 
-A somewhat better matching of the Swedish social security number. six or eight digits, an optional hyphen and four digits. Note that the first four non-matching numbers matched the initial attempt. To make a validation of the last digit (control digit) you need to use more than a regexp
+**Alternative**: `((?:19|20)?(\\d{2}))(0[1-9]|1[0-2])(0[1-9]|[1-2]\\d|3[0-1])[- ]?(\\d{4})`
+
+A somewhat better matching of the Swedish social security number. six or eight digits, an optional hyphen and four digits. Note that the first four non-matching numbers matched the initial attempt. To make a validation of the last digit (control digit) you need to use more than a regexp. The alternative expression contains the grouping used in the <a href="./src/main/java/se/blinfo/regexp/sample/SwedishSocialSecurityNumberValidator.java">SwedishSocialSecurityNumberValidator</a>.
 
   _Matches:_
 
@@ -1111,6 +1113,26 @@ A somewhat better matching of the Swedish social security number. six or eight d
   * false	"87456321"
   * false	"20040832-1541"
 
+With alternative writing:
+
+  _Matches:_
+
+  * true	"19721011-6534"
+  * true	"7811309574"
+  * true	"120226-0987"
+  * true	"19991231-9999"
+
+  _Non Matches:_
+
+  * false	"254789-1234"
+  * false	"987741008475"
+  * false	"12345678-0987"
+  * false	"8745632104"
+  * false	"1234567-9781"
+  * false	"1920-12-11-5789"
+  * false	"647189-987"
+  * false	"87456321"
+  * false	"20040832-1541"
 
 
 <a href="#toc">^</a>
@@ -1155,7 +1177,7 @@ Matches email address pattern.
 
 **Alternative**: `[A-Z&&[^IQV]]{3} ?(0\\d[A-Z1-9&&[^IQV]]|[1-9]\\d[A-Z0-9&&[^IQV]])`
 
-Matches the Swedish licence plate number. Three upper case letters A-H, J-P, R-U or W-Z followed by 001 - 999 or 00 - 99 plus upper case letter A-H, J-P, R-U or W-Z. Some letter combinations are removed, like KKK, PKK and a few others, but this expression does not handle these numbers.
+Matches the Swedish licence plate number. Three upper case letters A-H, J-P, R-U or W-Z followed by a single space and then 001 - 999 or 00 - 99 plus upper case letter A-H, J-P, R-U or W-Z. Some letter combinations are removed, like KKK, PKK and a few others, but this expression does not handle these numbers.
 
   _Matches:_
 

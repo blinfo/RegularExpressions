@@ -21,6 +21,7 @@ public class RegExpValidate {
         VALIDATOR_LIST.add(new IsoDateValidator("1987-02-27"));
         VALIDATOR_LIST.add(new IsoDateValidator("1988-02-29"));
         VALIDATOR_LIST.add(new IsoDateValidator("1987-02-29"));
+        VALIDATOR_LIST.add(new IsoDateValidator("1994-02-29"));
         VALIDATOR_LIST.add(new LicenceNumberValidator("HEX 408"));
         VALIDATOR_LIST.add(new LicenceNumberValidator("APB024"));
         VALIDATOR_LIST.add(new LicenceNumberValidator("BUL02A"));
@@ -38,6 +39,8 @@ public class RegExpValidate {
         VALIDATOR_LIST.add(new RolePlayingDieValidator("Roll 1D100 three times for items from table 14.1"));
         VALIDATOR_LIST.add(new SwedishSocialSecurityNumberValidator("940224-5626"));
         VALIDATOR_LIST.add(new SwedishSocialSecurityNumberValidator("199402245626"));
+        VALIDATOR_LIST.add(new SwedishSocialSecurityNumberValidator("19940228-5622"));
+        VALIDATOR_LIST.add(new SwedishSocialSecurityNumberValidator("19940229-5621"));
         VALIDATOR_LIST.add(new SwedishSocialSecurityNumberValidator("199402245624"));
         VALIDATOR_LIST.add(new SwedishSocialSecurityNumberValidator("9940224-5624"));
     }
@@ -57,5 +60,9 @@ public class RegExpValidate {
             System.out.println(v.validate());
         }
         );
+    }
+    
+    public static void main(String[] args) {
+        new RegExpValidate().run();
     }
 }
