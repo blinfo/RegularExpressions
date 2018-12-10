@@ -2,37 +2,43 @@
 <html>
     <head>
         <title>Validator for Swedish Social Security Number</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script type="text/javascript" src="swedish-social-security-number-validator.js"></script>
-        <script><!--
-
-            function validateInput() {
-                var input = document.getElementById('input').value;
-                var isValid = SSN.validate(input);
-                var result = "Number <em>" + input + "</em> is ";
-                result += (isValid) ? "a valid" : "an invalid";
-                document.getElementById('result').innerHTML = result + " number.";
-            }
---></script>
         <style>
             #result {
                 font-style: italic;
             }
-            #result em {
+            #result em, #result strong {
                 font-style: normal;
                 font-family: monospace;
                 font-size: 11pt;
+            }
+            #result strong {
+                font-size: 13pt;
+                display: inline-block;
+                width: 130px;
+                text-align: center;
+                background-color: #eee;
             }
         </style>
     </head>
     <body>
         <h1>Validator for Swedish Social Security Number</h1>
-        <input id="input" value=""/>
+        <input id="input" value="19981220-1961"/>
         <button type="button" onClick="validateInput()">Check</button>
         <p>
             Enter number to check and click the button.
         </p>
         <div id="result"></div>
+        <script>
+            <!--
+            function validateInput() {
+                var input = document.getElementById('input').value;
+                var result = (SSN.validate(input)) ? "a valid" : "an invalid";
+                document.getElementById('result').innerHTML = "Number <em>" + input + "</em> is <strong>" + result + "</strong> social security number.";
+            }
+            -->
+        </script>
     </body>
 </html>

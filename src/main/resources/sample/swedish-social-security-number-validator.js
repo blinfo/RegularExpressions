@@ -1,7 +1,7 @@
 SSN = {
-    validate: function (ssn) {
+    validate: function (input) {
         const REGEXP = /((?:19|20)?(\d{2}))(0[1-9]|1[0-2])(0[1-9]|[1-2]\d|3[0-1])[- ]?(\d{4})/;
-        if (ssn === null || !REGEXP.test(ssn)) {
+        if (input === null || !REGEXP.test(input)) {
             return false;
         }
         const FULL_YEAR = 1;
@@ -9,7 +9,7 @@ SSN = {
         const MONTH = 3;
         const DAY = 4;
         const NUMBER = 5;
-        var matcher = ssn.match(REGEXP);
+        var matcher = input.match(REGEXP);
         var fullYear = parseInt(matcher[FULL_YEAR]);
         var year = parseInt(matcher[YEAR]);
         var month = matcher[MONTH];
