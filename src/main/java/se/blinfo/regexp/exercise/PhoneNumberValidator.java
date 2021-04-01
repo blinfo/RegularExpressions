@@ -18,7 +18,7 @@ import se.blinfo.regexp.sample.AbstractValidator;
  * <li>08 54114290</li>
  * <li>+46 8 54114290</li>
  * </ul>
- * I. e. optional country number (one through three digits with + as suffix),
+ * I.e. optional country number (one through three digits with + as suffix),
  * region (one through three digits with no leading zero if country code is
  * provided, otherwise with a required leading zero) and the actual number (five
  * through eight digits). The different parts should be separated by one space.

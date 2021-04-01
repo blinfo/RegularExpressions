@@ -24,3 +24,4 @@ hs_err_pid*
 /RegExp/target/
 /RegExp/src/main/java/se/blinfo/regexp/Main.java
 /src/main/java/se/blinfo/regexp/Main.java
+/target/

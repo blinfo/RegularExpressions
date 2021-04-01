@@ -9,7 +9,7 @@ import java.util.logging.Logger;
  *
  * @author hl
  */
-public class RegExpMarkdown {
+class RegExpMarkdown {
 
     private final SourceProvider provider = new SourceProvider();
     private final File file;
