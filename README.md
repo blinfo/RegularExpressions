@@ -37,7 +37,7 @@
   * <a href="#iso-date">ISO-Date</a>
   * <a href="#swedish-social-security-number---initial-attempt">Swedish social security number - Initial attempt</a>
   * <a href="#swedish-social-security-number---improved">Swedish social security number - Improved</a>
-  * <a href="#email-address---a-pretty-simple-example">Email address - A pretty simple example</a>
+  * <a href="#email-address---a-pretty-rudimentary-example">Email address - A pretty rudimentary example</a>
   * <a href="#swedish-car-number">Swedish car number</a>
 
 
@@ -1063,7 +1063,7 @@ The same <a href="#date---a-fairly-good-match">as above</a> but only for ISO-dat
 
 **Expression**: `(\\d{2})?\\d{6}-?\\d{4}`
 
-Simple matching of the Swedish social security number. six or eight digits, an optional hyphen and four digits. This expressions only checks for the right number or digits, not wether they are correct.
+Simple matching of the Swedish social security number. Six or eight digits, an optional hyphen and four digits. This expressions only checks for the right number or digits, not wether they are correct.
 
   _Matches:_
 
@@ -1092,7 +1092,7 @@ Simple matching of the Swedish social security number. six or eight digits, an o
 
 **Alternative**: `((?:19|20)?(\\d{2}))(0[1-9]|1[0-2])(0[1-9]|[1-2]\\d|3[0-1])[- ]?(\\d{4})`
 
-A somewhat better matching of the Swedish social security number. six or eight digits, an optional hyphen and four digits. Note that the first four non-matching numbers matched the initial attempt. To make a validation of the last digit (control digit) you need to use more than a regexp. The alternative expression contains the grouping used in the <a href="./src/main/java/se/blinfo/regexp/sample/SwedishSocialSecurityNumberValidator.java">SwedishSocialSecurityNumberValidator</a> and the javascript <a href="./src/main/resources/sample/swedish-social-security-number-validator.js">swedish-social-security-number-validator.js</a>.
+A somewhat better matching of the Swedish social security number. Six or eight digits, an optional hyphen and four digits. Note that the first four non-matching numbers matched the initial attempt. To make a validation of the last digit (control digit) you need to use more than a regexp. The alternative expression contains the grouping used in the <a href="./src/main/java/se/blinfo/regexp/sample/SwedishSocialSecurityNumberValidator.java">SwedishSocialSecurityNumberValidator</a> and the javascript <a href="./src/main/resources/sample/swedish-social-security-number-validator.js">swedish-social-security-number-validator.js</a>.
 
   _Matches:_
 
@@ -1139,8 +1139,8 @@ With alternative writing:
 
 ---
 
-<a name="email-address---a-pretty-simple-example"> </a>
-### Email address - A pretty simple example
+<a name="email-address---a-pretty-rudimentary-example"> </a>
+### Email address - A pretty rudimentary example
 
 **Expression**: `[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}`
 
