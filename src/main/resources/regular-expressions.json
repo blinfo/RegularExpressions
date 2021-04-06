@@ -213,21 +213,21 @@
         },
         {
             "title": "Swedish social security number - Initial attempt",
-            "description": "Simple matching of the Swedish social security number. six or eight digits, an optional hyphen and four digits. This expressions only checks for the right number or digits, not wether they are correct.",
+            "description": "Simple matching of the Swedish social security number. Six or eight digits, an optional hyphen and four digits. This expressions only checks for the right number or digits, not wether they are correct.",
             "regexp": "(\\d{2})?\\d{6}-?\\d{4}",
             "matches": ["254789-1234", "987741008475", "12345678-0987", "8745632104"],
             "nonMatches": ["1234567-9781", "1920-12-11-5789", "647189-987", "87456321"]
         },
         {
             "title": "Swedish social security number - Improved",
-            "description": "A somewhat better matching of the Swedish social security number. six or eight digits, an optional hyphen and four digits. Note that the first four non-matching numbers matched the initial attempt. To make a validation of the last digit (control digit) you need to use more than a regexp. The alternative expression contains the grouping used in the <a href=\"./src/main/java/se/blinfo/regexp/sample/SwedishSocialSecurityNumberValidator.java\">SwedishSocialSecurityNumberValidator</a> and the javascript <a href=\"./src/main/resources/sample/swedish-social-security-number-validator.js\">swedish-social-security-number-validator.js</a>.",
+            "description": "A somewhat better matching of the Swedish social security number. Six or eight digits, an optional hyphen and four digits. Note that the first four non-matching numbers matched the initial attempt. To make a validation of the last digit (control digit) you need to use more than a regexp. The alternative expression contains the grouping used in the <a href=\"./src/main/java/se/blinfo/regexp/sample/SwedishSocialSecurityNumberValidator.java\">SwedishSocialSecurityNumberValidator</a> and the javascript <a href=\"./src/main/resources/sample/swedish-social-security-number-validator.js\">swedish-social-security-number-validator.js</a>.",
             "regexp": "(?:19|20)?\\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1-2]\\d|3[0-1])-?\\d{4}",
             "alternativeRegexp": "((?:19|20)?(\\d{2}))(0[1-9]|1[0-2])(0[1-9]|[1-2]\\d|3[0-1])[- ]?(\\d{4})",
             "matches": ["19721011-6534", "7811309574", "120226-0987", "19991231-9999"],
             "nonMatches": ["254789-1234", "987741008475", "12345678-0987", "8745632104", "1234567-9781", "1920-12-11-5789", "647189-987", "87456321", "20040832-1541"]
         },
         {
-            "title": "Email address - A pretty simple example",
+            "title": "Email address - A pretty rudimentary example",
             "description": "Matches email address pattern.",
             "regexp": "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}",
             "matches": ["h.l@fejk.com", "H_L@FEKJ.COM", "snisse%b@blinfo.se", "Info@hex.nu", "Kalle-Nilsson@KalleNilsson.com", "a+b@math.org", "a@b.c.de"],
