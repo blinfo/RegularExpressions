@@ -84,25 +84,20 @@ public class SwedishSocialSecurityNumberValidator extends AbstractValidator {
         Integer day = Integer.valueOf(dayString);
         year = ensureCenturyIsProvided(year);
         switch (month) {
-            case 1:
-            case 3:
-            case 5:
-            case 7:
-            case 8:
-            case 10:
-            case 12:
+            case 1, 3, 5, 7, 8, 10, 12 -> {
                 return day < 32;
-            case 4:
-            case 6:
-            case 9:
-            case 11:
+            }
+            case 4, 6, 9, 11 -> {
                 return day < 31;
-            case 2:
+            }
+            case 2 -> {
                 int modulo100 = year % 100;
-                return ((modulo100 == 0 && year % 400 == 0) || (modulo100 != 0 && year % 4 == 0)) 
+                return ((modulo100 == 0 && year % 400 == 0) || (modulo100 != 0 && year % 4 == 0))
                         ? day < 30 : day < 29;
-            default:
+            }
+            default -> {
                 return false;
+            }
         }
     }
 

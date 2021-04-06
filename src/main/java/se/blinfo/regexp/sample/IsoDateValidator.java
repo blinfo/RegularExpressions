@@ -1,8 +1,5 @@
 package se.blinfo.regexp.sample;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 /**
  *
  * This class validates an ISO 8601 date string.
@@ -30,35 +27,32 @@ public class IsoDateValidator extends AbstractValidator {
                 Integer year = Integer.parseInt(matcher.group(1));
                 Integer month = Integer.parseInt(matcher.group(2));
                 Integer day = Integer.parseInt(matcher.group(3));
-                switch (month) {
-                    case 1:
-                    case 3:
-                    case 5:
-                    case 7:
-                    case 8:
-                    case 10:
-                    case 12:
-                        valid = day < 32;
-                        break;
-                    case 4:
-                    case 6:
-                    case 9:
-                    case 11:
-                        valid = day < 31;
-                        break;
-                    case 2:
-                        int modulo100 = year % 100;
-                        if ((modulo100 == 0 && year % 400 == 0) || (modulo100 != 0 && year % 4 == 0)) {
-                            valid = day < 30;
-                        } else {
-                            valid = day < 29;
-                        }
-                    default:
-                        break;
-                }
+                valid = validateDays(month, day, year);
             }
         }
         return new Result(input, regExp, valid);
+    }
+
+    private boolean validateDays(Integer month, Integer day, Integer year) {
+        switch (month) {
+            case 1, 3, 5, 7, 8, 10, 12 -> {
+                return day < 32;
+            }
+            case 4, 6, 9, 11 -> {
+                return day < 31;
+            }
+            case 2 -> {
+                int modulo100 = year % 100;
+                if ((modulo100 == 0 && year % 400 == 0) || (modulo100 != 0 && year % 4 == 0)) {
+                    return day < 30;
+                } else {
+                    return day < 29;
+                }
+            }
+            default -> {
+                return false;
+            }
+        }
     }
 
     public static void main(String[] args) {
