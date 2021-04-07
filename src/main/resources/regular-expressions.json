@@ -213,7 +213,7 @@
         },
         {
             "title": "Swedish social security number - Initial attempt",
-            "description": "Simple matching of the Swedish social security number. Six or eight digits, an optional hyphen and four digits. This expressions only checks for the right number or digits, not wether they are correct.",
+            "description": "Simple matching of the Swedish social security number. Six or eight digits, an optional hyphen and four digits. This expressions only checks for the right number or digits, not whether they are correct.",
             "regexp": "(\\d{2})?\\d{6}-?\\d{4}",
             "matches": ["254789-1234", "987741008475", "12345678-0987", "8745632104"],
             "nonMatches": ["1234567-9781", "1920-12-11-5789", "647189-987", "87456321"]
