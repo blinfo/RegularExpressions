@@ -1,7 +1,5 @@
 package se.blinfo.regexp.exercise;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 import se.blinfo.regexp.sample.AbstractValidator;
 
@@ -33,7 +31,7 @@ public class NameValidator extends AbstractValidator {
         super(input, REGEXP);
     }
 
-    public Name getName() {
+    public Optional<Name> getName() {
         throw new UnsupportedOperationException("This method should be implemented as a part of the exercise.");
     }
 
@@ -63,20 +61,12 @@ public class NameValidator extends AbstractValidator {
 
         @Override
         public String toString() {
-            if (getInitials().isPresent()) {
-                return "Name{" + "familyName=" + familyName + ", givenName=" + givenName + ", initials=" + initials + '}';
-            }
-            return "Name{" + "familyName=" + familyName + ", givenName=" + givenName + "}";
+            return "Name{"
+                    + "familyName=" + familyName + ", "
+                    + "givenName=" + givenName
+                    + getInitials().map(in -> ", initials=" + in).orElse("")
+                    + '}';
         }
 
-    }
-
-    public static void main(String[] args) {
-        System.out.println("The following should validate to \"true\"");
-        List<String> validInput = Arrays.asList("Snissesson-Kahm, Ulla-Lisa T. T.","Persson, Leif G. W.", "Öijer, Fredrika K.", "Lidén, Karl Håkan", "Cæsar, Julia", "Karlsson-Andersson, Pär-Uno");
-        validInput.forEach(s -> System.out.println(new NameValidator(s).validate()));
-        System.out.println("\nThe following should validate to \"false\"");
-        List<String> invalidInput = Arrays.asList("Fredrika K. Öijer", "Håkan Lidén", "Julia Cæsar", "Picasso");
-        invalidInput.forEach(s -> System.out.println(new NameValidator(s).validate()));
     }
 }

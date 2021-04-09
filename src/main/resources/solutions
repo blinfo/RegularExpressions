@@ -86,20 +86,13 @@ PhoneNumberValidator:   ((\+[1-9]\d{0,2}) ([1-9]\d{0,2})|0[1-9]\d{0,2}) ([1-9]\d
 
 
 
-NameValidator:          (([A-ZÅÄÖ][a-zåäöéæ]+)([- ]([A-ZÅÄÖ][a-zåäöéæ]+))?), (([A-ZÅÄÖ][a-zåäöéæ]+)([- ]([A-ZÅÄÖ][a-zåäöéæ]+)){0,3})([ ](([A-ZÅÄÖ]\.)([- ]([A-ZÅÄÖ]\.))*))?
+NameValidator:          (([A-ZÅÄÖÉÆ][a-zåäöéæ]+)([- ]([A-ZÅÄÖÉÆ][a-zåäöéæ]+))?), (([A-ZÅÄÖÉÆ][a-zåäöéæ]+)([- ]([A-ZÅÄÖÉÆ][a-zåäöéæ]+)){0,3})([ ](([A-ZÅÄÖÉÆ]\\.)([- ]([A-ZÅÄÖÉÆ]\\.))*))?
     (groups 1, 5 & 10)
 
-    public Name getName() {
-        int familyName = 1;
-        int givenName = 5;
-        int initials = 10;
-        Matcher matcher = Pattern.compile(regExp).matcher(input);
-        if (!matcher.matches()) {
-            return null;
+    public Optional<Name> getName() {
+        int familyName = 1, givenName = 5, initials = 10;
+        if (matcher.matches()) {
+            return Optional.of(new Name(matcher.group(familyName), matcher.group(givenName), matcher.group(initials)));
         }
-        matcher.reset();
-        if (matcher.find()) {
-            return new Name(matcher.group(familyName), matcher.group(givenName), matcher.group(initials));
-        }
-        return null;
+        return Optional.empty();
     }
