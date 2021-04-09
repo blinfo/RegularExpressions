@@ -4,6 +4,9 @@
 <p>
 <a href="https://github.com/blinfo/RegularExpressions/wiki"><b>Wiki page</b></a>
 </p>
+<p>
+<a href="https://github.com/blinfo/RegularExpressions/blob/master/Exercises.md"><b>Exercises</b></a>
+</p>
 <a name="toc"> </a>
 # Regular Expressions 
 

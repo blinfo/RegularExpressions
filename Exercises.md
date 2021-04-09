@@ -8,7 +8,7 @@ Create a pattern of digits and hyphen where the first group of digits may vary i
 ## VatNumberValidator
 Create a pattern of letters and digits with an optional space for the Swedish Vat Number. The pattern should match the two letters "SE" followed by twelve digits. The last two digits should be "01".
 
-## UUIDValiidator
+## UUIDValidator
 Create a pattern that matches java's UUID format. Hexadecimals in five groups with varying lengths, separated by hyphens.
 
 ## HtmlLinkParser (some java coding as well)

@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 
 /**
  *
- * Validate a string to se if it contains a valid die combination, then perform
+ * Validate a string to see if it contains a valid die combination, then perform
  * the roll.
  * <p>
  * The valid combination is:
