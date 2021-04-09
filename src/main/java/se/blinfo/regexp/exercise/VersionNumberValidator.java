@@ -1,11 +1,28 @@
 package se.blinfo.regexp.exercise;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.IntStream;
+import java.util.Optional;
 import se.blinfo.regexp.sample.AbstractValidator;
 
 /**
+ * For the purpose of this exercise, numbering is only done with digits and
+ * dots. A minimum of major and minor version numbers is required, i. e. "1.0",
+ * "0.7"
+ * <p>
+ * Valid numbers:
+ * <ol>
+ * <li>1.3</li>
+ * <li>0.5</li>
+ * <li>2.121.19</li>
+ * <li>1.0</li>
+ * </ol>
+ * <p>
+ * Invalid numbers:
+ * <ol>
+ * <li>1</li>
+ * <li>v1</li>
+ * <li>v.1.BETA</li>
+ * <li>0.0.4-SNAPSHOT</li>
+ * </ol>
  *
  * @author hl
  */
@@ -17,7 +34,7 @@ public class VersionNumberValidator extends AbstractValidator {
         super(input, REGEXP);
     }
 
-    public Version getVersion() {
+    public Optional<Version> getVersion() {
         throw new UnsupportedOperationException("This method should be implemented as a part of the exercise.");
     }
 
@@ -30,7 +47,7 @@ public class VersionNumberValidator extends AbstractValidator {
         public Version(String major, String minor, String bugFix) {
             this.major = Integer.valueOf(major);
             this.minor = Integer.valueOf(minor);
-            this.bugFix = bugFix != null ? Integer.valueOf(bugFix) : null;
+            this.bugFix = bugFix == null ? null : Integer.valueOf(bugFix);
         }
 
         public Integer getMajor() {
@@ -41,33 +58,17 @@ public class VersionNumberValidator extends AbstractValidator {
             return minor;
         }
 
-        public Integer getBugFix() {
-            return bugFix;
+        public Optional<Integer> getBugFix() {
+            return Optional.ofNullable(bugFix);
         }
 
         @Override
         public String toString() {
-            if (getBugFix() != null) {
-                return "Version{" + "major: " + major + ", minor: " + minor + ", bugFix: " + bugFix + "}";
-            }
-            return "Version{" + "major: " + major + ", minor: " + minor + "}";
+            return "Version{"
+                    + "major: " + major + ", "
+                    + "minor: " + minor
+                    + getBugFix().map(bf -> ", bugFix: " + bf).orElse("")
+                    + '}';
         }
-
     }
-
-    public static void main(String[] args) {
-        System.out.println("The following should validate to \"true\"");
-        List<String> validInput = Arrays.asList("1.0", "1.2.14", "2.3.121", "0.4");
-        validInput.forEach(s -> System.out.println(new VersionNumberValidator(s).validate()));
-        IntStream.range(0, 5).forEach(i -> {
-            System.out.println(new VersionNumberValidator(i + "." + 3 + "." + i).validate());
-        });
-        System.out.println("\nThe following should validate to \"false\"");
-        List<String> invalidInput = Arrays.asList("1",
-                "v.1", "1.2.beta",
-                "3.11-SNAPSHOT");
-        invalidInput.forEach(s -> System.out.println(new VersionNumberValidator(s).validate()));
-        System.out.println(new VersionNumberValidator("2.0.61").getVersion());
-    }
-
 }
