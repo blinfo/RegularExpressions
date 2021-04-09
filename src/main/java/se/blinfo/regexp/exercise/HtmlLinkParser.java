@@ -1,6 +1,18 @@
 package se.blinfo.regexp.exercise;
 
+import java.util.Optional;
+
 /**
+ * Create a regexp to extract the URL and the link text from an ordinary link.
+ * The link should be an ordinary HTML-link, i. e.
+ * <code>&lt;a href="http://bjornlunden.se/"&gt;Björn Lundén AB&lt;/a&gt;</code>.
+ * <p>
+ * Also, create a method that checks if the input matches your regexp and in
+ * that case returns an optional HtmlLink. The link above should produce:<br>
+ * <code>Björn Lundén AB : http://bjornlunden.se/</code> <br/>
+ * by the <b>toString</b> method.
+ *
+ *
  *
  * @author hl
  */
@@ -13,10 +25,14 @@ public class HtmlLinkParser {
         this.input = input;
     }
 
-    public HtmlLink getLink() {
+    public Optional<HtmlLink> getLink() {
         throw new UnsupportedOperationException("This method should be implemented as a part of the exercise.");
     }
 
+    /**
+     * A simple object holding the url and the link text.
+     *
+     */
     public static class HtmlLink {
 
         private final String url;
@@ -39,9 +55,9 @@ public class HtmlLinkParser {
         public String toString() {
             return text + " : " + url;
         }
-    }
 
-    public static void main(String[] args) {
-        System.out.println(new HtmlLinkParser("<a href=\"http://www.blinfo.se/\">Björn Lundén information AB</a>").getLink());
+        public String toHtml() {
+            return "<a href=\"" + url + "\">" + text + "</a>";
+        }
     }
 }
