@@ -18,6 +18,8 @@ public class UsernameValidatorCheck {
         assertTrue("Username " + input + " should be valid", new UsernameValidator(input).validate().isValid());
         input = "spiderman";
         assertTrue("Username " + input + " should be valid", new UsernameValidator(input).validate().isValid());
+        input = "maryjane";
+        assertTrue("Username " + input + " should be valid", new UsernameValidator(input).validate().isValid());
         input = "ottoman";
         assertTrue("Username " + input + " should be valid", new UsernameValidator(input).validate().isValid());
         input = "bettan";
@@ -30,6 +32,8 @@ public class UsernameValidatorCheck {
         input = "tomtenissen";
         assertFalse("Username " + input + " should be invalid", new UsernameValidator(input).validate().isValid());
         input = "mary-jane";
+        assertFalse("Username " + input + " should be invalid", new UsernameValidator(input).validate().isValid());
+        input = "MaryJane";
         assertFalse("Username " + input + " should be invalid", new UsernameValidator(input).validate().isValid());
         input = "sofa";
         assertFalse("Username " + input + " should be invalid", new UsernameValidator(input).validate().isValid());

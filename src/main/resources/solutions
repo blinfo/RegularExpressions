@@ -12,18 +12,13 @@ UUIDValidator:          [\da-f]{8}-(?:[\da-f]{4}-){3}[\da-f]{12}
 
 HtmlLinkParser:         .*<a href="(.*)">(.*)</a>.*
 
-    public HtmlLink getLink() {
+    public Optional<HtmlLink> getLink() {
         Matcher matcher = Pattern.compile(REGEXP).matcher(input);
-        if (!matcher.matches()) {
-            return null;
+        if (matcher.matches()) {
+            return Optional.of(new HtmlLink(matcher.group(1), matcher.group(2)));
         }
-        matcher.reset();
-        if (matcher.find()) {
-            return new HtmlLink(matcher.group(1), matcher.group(2));
-        }
-        return null;
+        return Optional.empty();
     }
-
 
 
 VersionNumberValidator: (\d+)\.(\d+)(?:\.(\d+))?

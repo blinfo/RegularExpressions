@@ -1,4 +1,12 @@
 # Exercises
+The exercises are found in the "exercise" package. Each class needs more or less completion to work. 
+The requisite for each exercise is found in the java-doc-comment for the class.
+The first exercises simply need you to provide the regular expression. The last few also need some java coding.
+
+To check if you have succeeded, run the corresponding "Check"-class in the test package.
+
+It's suggested that you do the exercises in the order below:
+
 ## UsernameValidator
 Create a group of characters, specify minimum and maximum number of characters.
 
@@ -20,7 +28,7 @@ from `<a href="http://some.url.se/">The Link Text</a>`
 Create a capturing pattern for version number (e. g. `3.10, 2.15.3, 1.0`) and populate the Version class with correct values.
 
 ## PasswordValidator
-Create a matcher for a specified (hypothetical) password format.
+Create a pattern for a specified (hypothetical) password format.
 
 ## PhoneNumberValidator (some java coding as well)
 Create a pattern for phone numbers with two through three groups separated by one space; optional country code, region code and individual number.

@@ -1,7 +1,5 @@
 package se.blinfo.regexp.exercise;
 
-import java.util.Arrays;
-import java.util.List;
 import se.blinfo.regexp.sample.AbstractValidator;
 
 /**
@@ -19,14 +17,4 @@ public class VatNumberValidator extends AbstractValidator {
     public VatNumberValidator(String input) {
         super(input, REGEXP);
     }
-
-    public static void main(String[] args) {
-        System.out.println("The following should validate to \"true\"");
-        List<String> validInput = Arrays.asList("SE 987654321001", "SE 123456789001", "SE123456789001");
-        validInput.forEach(s -> System.out.println(new VatNumberValidator(s).validate()));
-        System.out.println("\nThe following should validate to \"false\"");
-        List<String> invalidInput = Arrays.asList("SE  987654321000", "SWE987654321001", "SE 98765432101");
-        invalidInput.forEach(s -> System.out.println(new VatNumberValidator(s).validate()));
-    }
-
 }
