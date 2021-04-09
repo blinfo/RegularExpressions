@@ -8,7 +8,7 @@ import se.blinfo.regexp.sample.AbstractValidator;
  * For the purpose of this exercise the password format should be:
  * <ol>
  * <li>two lower case letters (including åäöæøœ)</li>
- * <li>one special character (*+-?@£$€¥!#¤%&)</li>
+ * <li>one special character (*+-?@£$€¥!#¤%&amp;)</li>
  * <li>one through three digits</li>
  * <li>one through three uppercase letters (including ÅÄÖÆØŒ)</li>
  * <li>one special character</li>

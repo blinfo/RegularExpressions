@@ -35,6 +35,12 @@ public class NameValidator extends AbstractValidator {
         throw new UnsupportedOperationException("This method should be implemented as a part of the exercise.");
     }
 
+    /**
+     * A simple Name-object.
+     *
+     * Contains getters for the family and given names, as well as an
+     * getOptional for initials.
+     */
     public static class Name {
 
         private final String familyName;

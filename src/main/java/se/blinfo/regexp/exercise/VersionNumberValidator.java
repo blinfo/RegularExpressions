@@ -38,6 +38,12 @@ public class VersionNumberValidator extends AbstractValidator {
         throw new UnsupportedOperationException("This method should be implemented as a part of the exercise.");
     }
 
+    /**
+     * A simple Version-object.
+     *
+     * Contains getters for the major and minor version, as well as an
+     * getOptional for bugFix version.
+     */
     public static class Version {
 
         private final Integer major;
