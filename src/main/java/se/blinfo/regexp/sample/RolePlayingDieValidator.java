@@ -1,7 +1,7 @@
 package se.blinfo.regexp.sample;
 
 /**
- * Validate a string to se if it is a valid die combination.
+ * Validate a string to see if it is a valid die combination.
  * <p>
  * The combination is:
  * <ol>
@@ -16,7 +16,7 @@ package se.blinfo.regexp.sample;
  */
 public class RolePlayingDieValidator extends AbstractValidator {
 
-    private static final String REG_EXP = ".*\\d+[dDtT]\\d+([-+]?\\d*)?.*";
+    private static final String REG_EXP = ".*(\\d+[dDtT]\\d+([-+]?\\d*)?)[.[^\\*/]]*";
 
     public RolePlayingDieValidator(String input) {
         super(input, REG_EXP);
@@ -25,11 +25,5 @@ public class RolePlayingDieValidator extends AbstractValidator {
     @Override
     public Result validate() {
         return new Result(input, regExp, input.matches(regExp));
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new RolePlayingDieValidator("3D10+3").validate());
-        System.out.println(new RolePlayingDieValidator("3D10-3").validate());
-        System.out.println(new RolePlayingDieValidator("Roll 3D10 for damage.").validate());
     }
 }

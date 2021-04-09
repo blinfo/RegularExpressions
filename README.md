@@ -1063,7 +1063,7 @@ The same <a href="#date---a-fairly-good-match">as above</a> but only for ISO-dat
 
 **Expression**: `(\\d{2})?\\d{6}-?\\d{4}`
 
-Simple matching of the Swedish social security number. Six or eight digits, an optional hyphen and four digits. This expressions only checks for the right number or digits, not wether they are correct.
+Simple matching of the Swedish social security number. Six or eight digits, an optional hyphen and four digits. This expressions only checks for the right number or digits, not whether they are correct.
 
   _Matches:_
 

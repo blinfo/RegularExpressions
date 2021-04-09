@@ -46,9 +46,6 @@ public class ImprovedRolePlayingDieParser {
         }
         matcher.reset();
         if (matcher.find()) {
-//            for (int i = 0; i < matcher.groupCount(); i++) {
-//                System.out.println(matcher.group(i + 1));
-//            }
             return IntStream.range(0, Integer.parseInt(matcher.group(NUMBER_OF_DICE)))
                     .map(i -> rollDie(matcher.group(DIE_MAX)))
                     .reduce((a, b) -> a + b).orElse(0) + getModifierValue(matcher.group(OPERATOR), matcher.group(MODIFIER));
@@ -63,16 +60,5 @@ public class ImprovedRolePlayingDieParser {
     private static int getModifierValue(String operator, String modifier) {
         int result = modifier == null || modifier.isEmpty() ? 0 : Integer.valueOf(modifier);
         return operator == null || operator.isEmpty() ? 0 : operator.equals("-") ? 0 - result : result;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(ImprovedRolePlayingDieParser.roll("1D1+1"));
-        System.out.println(ImprovedRolePlayingDieParser.roll("1D1-1"));
-        System.out.println(ImprovedRolePlayingDieParser.roll("1D1"));
-        System.out.println(ImprovedRolePlayingDieParser.roll("Roll 3D10+3"));
-        System.out.println(ImprovedRolePlayingDieParser.roll("HP: 3D10*3"));
-        System.out.println(ImprovedRolePlayingDieParser.roll("1D10+10"));
-        System.out.println(ImprovedRolePlayingDieParser.roll("Roll 1D100 three times for items from table 14.1"));
-        System.out.println(ImprovedRolePlayingDieParser.roll(null));
     }
 }

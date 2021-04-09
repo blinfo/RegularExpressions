@@ -117,10 +117,4 @@ public class SwedishSocialSecurityNumberValidator extends AbstractValidator {
         }
         return year;
     }
-
-    public static void main(String[] args) {
-        System.out.println(new SwedishSocialSecurityNumberValidator("940224-5626").validate());
-        System.out.println(new SwedishSocialSecurityNumberValidator("040229-5620").validate());
-        System.out.println(new SwedishSocialSecurityNumberValidator("19940229-5621").validate());
-    }
 }

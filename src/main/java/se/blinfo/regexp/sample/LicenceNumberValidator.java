@@ -49,17 +49,17 @@ public class LicenceNumberValidator extends AbstractValidator {
     private boolean isValid() {
         return !BLOCKED_LETTER_COMBINATIONS.contains(input.substring(0, 3));
     }
-
-    public static void main(String[] args) {
-        String plate = "HEX 408";
-        System.out.println(new LicenceNumberValidator(plate).validate());
-        plate = "CPU12Y";
-        System.out.println(new LicenceNumberValidator(plate).validate());
-        plate = "APB 123";
-        System.out.println(new LicenceNumberValidator(plate).validate());
-        plate = "APB123";
-        System.out.println(new LicenceNumberValidator(plate).validate());
-        plate = "APA123";
-        System.out.println(new LicenceNumberValidator(plate).validate());
-    }
+//
+//    public static void main(String[] args) {
+//        String plate = "HEX 408";
+//        System.out.println(new LicenceNumberValidator(plate).validate());
+//        plate = "CPU12Y";
+//        System.out.println(new LicenceNumberValidator(plate).validate());
+//        plate = "APB 123";
+//        System.out.println(new LicenceNumberValidator(plate).validate());
+//        plate = "APB123";
+//        System.out.println(new LicenceNumberValidator(plate).validate());
+//        plate = "APA123";
+//        System.out.println(new LicenceNumberValidator(plate).validate());
+//    }
 }

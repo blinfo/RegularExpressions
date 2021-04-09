@@ -20,7 +20,7 @@ public class IsoDateValidator extends AbstractValidator {
     @Override
     public Result validate() {
         boolean valid = false;
-        if (super.validate().isMatch()) {
+        if (super.validate().isValid()) {
             // Reset matcher after check if match
             matcher.reset();
             if (matcher.find()) {
@@ -54,11 +54,4 @@ public class IsoDateValidator extends AbstractValidator {
             }
         }
     }
-
-    public static void main(String[] args) {
-        System.out.println(new IsoDateValidator("1987-11-30").validate());
-        System.out.println(new IsoDateValidator("1987-02-29").validate());
-        System.out.println(new IsoDateValidator("1988-02-29").validate());
-    }
-
 }

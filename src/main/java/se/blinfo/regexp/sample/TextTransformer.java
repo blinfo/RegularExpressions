@@ -16,15 +16,15 @@ import java.util.regex.Pattern;
 public class TextTransformer {
 
     private final String sourceString;
-    private static final String REGEXP_CAMEL_CASE = "(([A-Z])([a-z])*)";
-    private static final String REGEXP_HYPHEN = "(([a-z])([a-z]*))";
+    private static final Pattern CAMEL_CASE = Pattern.compile("(([A-Z])([a-z])*)");
+    private static final Pattern HYPHEN = Pattern.compile("(([a-z])([a-z]*))");
 
     public TextTransformer(String sourceString) {
         this.sourceString = sourceString;
     }
 
     public String camelCaseToHyphen() {
-        Matcher matcher = Pattern.compile(REGEXP_CAMEL_CASE).matcher(sourceString);
+        Matcher matcher = CAMEL_CASE.matcher(sourceString);
         StringBuilder builder = new StringBuilder();
         while (matcher.find()) {
             if (!builder.toString().isEmpty()) {
@@ -36,7 +36,7 @@ public class TextTransformer {
     }
 
     public String hyphenToCamelCase() {
-        Matcher matcher = Pattern.compile(REGEXP_HYPHEN).matcher(sourceString);
+        Matcher matcher = HYPHEN.matcher(sourceString);
         matcher.reset();
         StringBuilder builder = new StringBuilder();
         while (matcher.find()) {
@@ -44,18 +44,5 @@ public class TextTransformer {
             builder.append(matcher.group(3).toLowerCase());
         }
         return builder.toString();
-    }
-
-    public static void main(String[] args) {
-        String string;
-        string = "TheInputStringToTransform";
-//        string = "AStringToTransform";
-//        string = TextTransformer.class.getSimpleName();
-        System.out.println(string);
-        string = new TextTransformer(string).camelCaseToHyphen();
-        System.out.println(string);
-        string = new TextTransformer(string).hyphenToCamelCase();
-        System.out.println(string);
-
     }
 }

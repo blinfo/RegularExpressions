@@ -5,7 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  *
  * E. g. 3D6+3
- * 
+ *
  * @author hl
  */
 public class RolePlayingDieParser {
@@ -51,15 +51,5 @@ public class RolePlayingDieParser {
             return result - modifier;
         }
         return result;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(RolePlayingDieParser.roll("1D1+1"));
-        System.out.println(RolePlayingDieParser.roll("1D1-1"));
-        System.out.println(RolePlayingDieParser.roll("1D1"));
-        System.out.println(RolePlayingDieParser.roll("3D10+3"));
-        System.out.println(RolePlayingDieParser.roll("3D10*3"));
-        System.out.println(RolePlayingDieParser.roll("1D10+10"));
-        System.out.println(RolePlayingDieParser.roll(null));
     }
 }
