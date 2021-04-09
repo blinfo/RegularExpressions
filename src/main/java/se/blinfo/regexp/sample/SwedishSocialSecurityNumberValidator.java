@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 /**
  *
- * Validation of SwedishSocialSecurityNumbers
- * <ol>
+ * Validation of SwedishSocialSecurityNumbers.
+ *  * <ol>
  * <li>Check that the input string matches the pattern for security numbers</li>
  * <li>If it is a pattern match, the date part of the number is validated (the
  * number "19940229-5621" is a valid luhn number, but an invalid date)</li>
@@ -15,6 +15,10 @@ import java.time.LocalDate;
  * </ol>
  * Added date validation as well. "19940229-5621" is a valid luhn number, but an
  * invalid date.
+ * <p>
+ * For the Luhn Algorithm:
+ * <a href="https://en.wikipedia.org/wiki/Luhn_algorithm">Luhn algorithm
+ * (Wikipedia)</a>
  *
  * @author hl
  */

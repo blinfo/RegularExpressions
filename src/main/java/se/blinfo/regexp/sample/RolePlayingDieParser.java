@@ -3,8 +3,9 @@ package se.blinfo.regexp.sample;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
+ * A parser for input strings in the style of RPG-games.
  *
- * E. g. 3D6+3
+ * E. g. 3D6+3, 5D4
  *
  * @author hl
  */

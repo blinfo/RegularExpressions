@@ -1,13 +1,22 @@
 package se.blinfo.regexp.sample;
 
 /**
+ * A validator for the RegularExpressions project.
+ *
+ * Used in samples and exercises.
  *
  * @author hl
  */
 public interface Validator {
-    
+
     Result validate();
 
+    /**
+     * The result class for the Validators.
+     *
+     * The result provides getters the regular expression and the input string.
+     * Also a boolean "isValid" method.
+     */
     public class Result {
 
         private final String input;

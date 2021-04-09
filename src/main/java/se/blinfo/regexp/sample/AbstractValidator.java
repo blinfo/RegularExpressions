@@ -4,6 +4,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * An abstract validator.
+ *
+ * The classes extending this should at least provide the Regular Expression
+ * (regExp).
  *
  * @author hl
  */
@@ -13,7 +17,7 @@ public abstract class AbstractValidator implements Validator {
     protected final String regExp;
     protected final Matcher matcher;
 
-    public AbstractValidator(String input, String regExp) {
+    protected AbstractValidator(String input, String regExp) {
         if (regExp == null || regExp.isEmpty()) {
             throw new IllegalArgumentException("The regular expression must not be null or empty string!");
         }
